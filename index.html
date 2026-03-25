@@ -7,147 +7,113 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --gold: #E8A020;
-  --gold-light: #f0b84a;
-  --gold-dim: rgba(232,160,32,0.10);
-  --gold-border: rgba(232,160,32,0.22);
-  --dark: #141414;
-  --dark2: #1c1c1c;
-  --dark3: #242424;
-  --text: #e8e2d8;
-  --muted: #6e6a64;
-  --dim: #333;
-  --green: #4caf7d;
-  --blue: #5a9fd4;
-  --red: #e05c4b;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#E8A020;--gold-l:#f0b84a;--gold-dim:rgba(232,160,32,.10);--gold-b:rgba(232,160,32,.22);
+  --d1:#141414;--d2:#1c1c1c;--d3:#242424;
+  --txt:#e8e2d8;--mut:#6e6a64;--dim:#2e2e2e;
+  --grn:#4caf7d;--blu:#5a9fd4;--red:#e05c4b;
 }
-html, body { min-height: 100%; background: var(--dark); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; }
+html,body{min-height:100%;background:var(--d1);color:var(--txt);font-family:'DM Sans',sans-serif;font-size:14px}
 
 /* LOADING */
-#loading {
-  position: fixed; inset: 0; background: var(--dark);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; z-index: 999;
-  transition: opacity .5s;
-}
-#loading.fade { opacity: 0; pointer-events: none; }
-.ld-logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 8px; color: var(--gold); }
-.ld-sub  { font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
-.ld-bar  { width: 140px; height: 2px; background: var(--dim); border-radius: 2px; overflow: hidden; }
-.ld-fill { height: 100%; background: var(--gold); animation: bar 1.4s ease-in-out infinite; }
-@keyframes bar { 0%{width:0;margin-left:0} 50%{width:100%;margin-left:0} 100%{width:0;margin-left:100%} }
-#ld-err { display:none; font-size:11px; color:#e05c4b; background:rgba(224,92,75,.1); border:1px solid rgba(224,92,75,.25); border-radius:6px; padding:10px 18px; max-width:340px; text-align:center; line-height:1.5; }
+#ld{position:fixed;inset:0;background:var(--d1);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:999;transition:opacity .5s}
+#ld.gone{opacity:0;pointer-events:none}
+.ld-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:8px;color:var(--gold)}
+.ld-sub{font-size:10px;color:var(--mut);letter-spacing:2px;text-transform:uppercase}
+.ld-bar{width:140px;height:2px;background:var(--dim);border-radius:2px;overflow:hidden}
+.ld-fill{height:100%;background:var(--gold);animation:bar 1.4s ease-in-out infinite}
+@keyframes bar{0%{width:0;margin-left:0}50%{width:100%;margin-left:0}100%{width:0;margin-left:100%}}
+#ld-err{display:none;font-size:11px;color:var(--red);background:rgba(224,92,75,.1);border:1px solid rgba(224,92,75,.25);border-radius:6px;padding:10px 18px;max-width:360px;text-align:center;line-height:1.6}
 
 /* HEADER */
-.hdr {
-  background: var(--dark2); border-bottom: 1px solid var(--gold-border);
-  padding: 0 32px; display: flex; align-items: center; justify-content: space-between;
-  height: 68px; position: sticky; top: 0; z-index: 50;
-}
-.hdr-left { display: flex; align-items: center; gap: 14px; }
-.logo-img { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
-.logo-fallback {
-  width: 44px; height: 44px; border-radius: 8px; background: var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Bebas Neue', sans-serif; color: #111; font-size: 22px; flex-shrink: 0;
-}
-.brand { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 4px; color: var(--gold); line-height: 1; }
-.brand-sub { font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
-.hdr-right { display: flex; align-items: center; gap: 14px; }
-.period-pill { font-size: 11px; color: var(--gold); border: 1px solid var(--gold-border); background: var(--gold-dim); padding: 4px 14px; border-radius: 20px; letter-spacing: 1px; font-weight: 500; }
-.upd-time { font-size: 10px; color: var(--muted); }
-.btn-refresh { background: none; border: 1px solid var(--gold-border); color: var(--muted); font-size: 11px; font-family: 'DM Sans', sans-serif; padding: 5px 14px; border-radius: 6px; cursor: pointer; transition: all .15s; }
-.btn-refresh:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+.hdr{background:var(--d2);border-bottom:1px solid var(--gold-b);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:50}
+.hdr-l{display:flex;align-items:center;gap:14px}
+.logo-wrap{width:46px;height:46px;border-radius:9px;overflow:hidden;flex-shrink:0;background:var(--d3);display:flex;align-items:center;justify-content:center}
+.brand{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:4px;color:var(--gold);line-height:1}
+.brand-sub{font-size:10px;color:var(--mut);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+.hdr-r{display:flex;align-items:center;gap:14px}
+.pill{font-size:11px;color:var(--gold);border:1px solid var(--gold-b);background:var(--gold-dim);padding:4px 14px;border-radius:20px;letter-spacing:1px;font-weight:500}
+.upd{font-size:10px;color:var(--mut)}
+.btn-upd{background:none;border:1px solid var(--gold-b);color:var(--mut);font-size:11px;font-family:'DM Sans',sans-serif;padding:5px 14px;border-radius:6px;cursor:pointer;transition:all .15s}
+.btn-upd:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
 
 /* LAYOUT */
-.wrap { max-width: 1200px; margin: 0 auto; padding: 28px 28px 60px; }
-.sec-label {
-  font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted);
-  display: flex; align-items: center; gap: 10px; margin-bottom: 14px; margin-top: 28px;
-}
-.sec-label:first-child { margin-top: 0; }
-.sec-label::after { content:''; flex:1; height:1px; background: var(--gold-border); opacity:.4; }
+.wrap{max-width:1200px;margin:0 auto;padding:28px 28px 60px}
+.sec{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:10px;margin-bottom:14px;margin-top:28px}
+.sec:first-child{margin-top:0}
+.sec::after{content:'';flex:1;height:1px;background:var(--gold-b);opacity:.4}
 
-/* KPI ROW */
-.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-.kpi {
-  background: var(--dark2); border: 1px solid var(--gold-border); border-radius: 10px;
-  padding: 20px 18px 16px; position: relative; overflow: hidden;
-}
-.kpi::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background: linear-gradient(90deg,var(--gold),transparent 70%); }
-.kpi-lbl { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-.kpi-val { font-family: 'Bebas Neue', sans-serif; font-size: 38px; color: var(--gold); line-height: 1; letter-spacing: 1px; }
-.kpi-sub { font-size: 11px; color: var(--muted); margin-top: 6px; }
-.kpi-tag { font-size: 11px; font-weight: 500; margin-top: 4px; color: var(--gold-light); }
-.kpi-tag.up { color: var(--green); }
-.kpi-tag.warn { color: var(--red); }
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:var(--d2);border:1px solid var(--gold-b);border-radius:10px;padding:20px 18px 16px;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent 70%)}
+.k-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
+.k-val{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);line-height:1;letter-spacing:1px}
+.k-sub{font-size:11px;color:var(--mut);margin-top:6px}
+.k-tag{font-size:11px;font-weight:500;margin-top:4px;color:var(--gold-l)}
+.k-tag.up{color:var(--grn)}
 
-/* CHART GRID */
-.grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; }
-.grid-3   { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
-.card { background: var(--dark2); border: 1px solid var(--gold-border); border-radius: 10px; padding: 20px; }
-.card-title { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-.card-title i { display:inline-block; width:12px; height:2px; background:var(--gold); border-radius:2px; }
-.chart-box { position: relative; width: 100%; }
-.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; }
-.leg-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); }
-.leg-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+/* CARDS/CHARTS */
+.g21{display:grid;grid-template-columns:2fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{background:var(--d2);border:1px solid var(--gold-b);border-radius:10px;padding:20px}
+.ct{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.ct em{display:inline-block;width:12px;height:2px;background:var(--gold);border-radius:2px;font-style:normal}
+.cbox{position:relative;width:100%}
+.leg{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px}
+.li{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--mut)}
+.ld2{width:9px;height:9px;border-radius:2px;flex-shrink:0}
 
 /* INSIGHTS */
-.insights-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
-.insight { background: var(--dark2); border: 1px solid var(--gold-border); border-radius: 10px; padding: 16px 18px; display: flex; gap: 12px; align-items: flex-start; }
-.ins-icon { font-size: 20px; flex-shrink: 0; }
-.ins-title { font-size: 11px; font-weight: 600; color: var(--gold-light); margin-bottom: 4px; }
-.ins-body { font-size: 11px; color: var(--muted); line-height: 1.55; }
+.ig{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ins{background:var(--d2);border:1px solid var(--gold-b);border-radius:10px;padding:16px 18px;display:flex;gap:12px}
+.ii{font-size:20px;flex-shrink:0}
+.it{font-size:11px;font-weight:600;color:var(--gold-l);margin-bottom:4px}
+.ib{font-size:11px;color:var(--mut);line-height:1.55}
+.ib b{color:var(--txt)}
 
 /* TABLE */
-.tbl-card { background: var(--dark2); border: 1px solid var(--gold-border); border-radius: 10px; padding: 22px; }
-.tbl-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
-.tbl-filters { display: flex; gap: 8px; flex-wrap: wrap; }
-.inp { background: var(--dark3); border: 1px solid var(--gold-border); border-radius: 6px; color: var(--text); font-size: 12px; font-family: 'DM Sans', sans-serif; padding: 6px 12px; outline: none; transition: border-color .2s; }
-.inp:focus { border-color: var(--gold); }
-.inp::placeholder { color: var(--muted); }
-.inp-w { width: 200px; }
+.tc{background:var(--d2);border:1px solid var(--gold-b);border-radius:10px;padding:22px}
+.tt{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tf{display:flex;gap:8px;flex-wrap:wrap}
+.inp{background:var(--d3);border:1px solid var(--gold-b);border-radius:6px;color:var(--txt);font-size:12px;font-family:'DM Sans',sans-serif;padding:6px 12px;outline:none;transition:border-color .2s}
+.inp:focus{border-color:var(--gold)}
+.inp::placeholder{color:var(--mut)}
+.inp-w{width:200px}
 
-table { width: 100%; border-collapse: collapse; }
-thead th { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--gold-border); font-weight: 500; white-space: nowrap; }
-tbody tr { border-bottom: 1px solid rgba(232,160,32,0.07); transition: background .1s; }
-tbody tr:hover { background: var(--gold-dim); }
-tbody tr:last-child { border-bottom: none; }
-tbody td { padding: 9px 10px; font-size: 12px; vertical-align: middle; white-space: nowrap; }
+table{width:100%;border-collapse:collapse}
+thead th{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut);padding:8px 10px;text-align:left;border-bottom:1px solid var(--gold-b);font-weight:500;white-space:nowrap}
+tbody tr{border-bottom:1px solid rgba(232,160,32,.07);transition:background .1s}
+tbody tr:hover{background:var(--gold-dim)}
+tbody tr:last-child{border-bottom:none}
+tbody td{padding:9px 10px;font-size:12px;vertical-align:middle;white-space:nowrap}
+.badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:20px;font-size:10px;font-weight:500}
+.bok{background:rgba(76,175,125,.12);color:#5fdc96;border:1px solid rgba(76,175,125,.22)}
+.bdi{background:rgba(232,160,32,.10);color:var(--gold-l);border:1px solid var(--gold-b)}
+.bap{background:rgba(90,159,212,.12);color:#7ec5f0;border:1px solid rgba(90,159,212,.22)}
+.vmo{font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--gold)}
+.vpc{font-family:'Bebas Neue',sans-serif;font-size:14px;color:rgba(232,160,32,.4)}
+.vto{font-family:'Bebas Neue',sans-serif;font-size:15px;color:var(--gold-l)}
+.tnu{font-size:10px;color:var(--mut)}
+.tcl{font-weight:500}
+.tve{color:var(--mut)}
 
-.badge { display: inline-flex; align-items: center; gap: 3px; padding: 2px 9px; border-radius: 20px; font-size: 10px; font-weight: 500; }
-.b-ok   { background:rgba(76,175,125,.12); color:#5fdc96; border:1px solid rgba(76,175,125,.22); }
-.b-diag { background:rgba(232,160,32,.10); color:var(--gold-light); border:1px solid var(--gold-border); }
-.b-aprov{ background:rgba(90,159,212,.12); color:#7ec5f0; border:1px solid rgba(90,159,212,.22); }
+.pag{display:flex;align-items:center;justify-content:space-between;margin-top:14px;font-size:11px;color:var(--mut)}
+.pbs{display:flex;gap:6px}
+.pb{background:var(--d3);border:1px solid var(--gold-b);color:var(--mut);font-size:11px;font-family:'DM Sans',sans-serif;padding:5px 14px;border-radius:5px;cursor:pointer;transition:all .15s}
+.pb:hover:not(:disabled){background:var(--gold-dim);border-color:var(--gold);color:var(--gold)}
+.pb:disabled{opacity:.3;cursor:not-allowed}
 
-.v-mo    { font-family:'Bebas Neue',sans-serif; font-size:14px; color:var(--gold); }
-.v-pec   { font-family:'Bebas Neue',sans-serif; font-size:14px; color:rgba(232,160,32,.4); }
-.v-tot   { font-family:'Bebas Neue',sans-serif; font-size:15px; color:var(--gold-light); }
-.t-num   { font-size:10px; color:var(--muted); }
-.t-cli   { font-weight:500; }
-.t-vei   { color:var(--muted); }
+.ftr{text-align:center;font-size:10px;color:var(--dim);padding:20px 0 32px;letter-spacing:2px;text-transform:uppercase}
 
-.pag { display:flex; align-items:center; justify-content:space-between; margin-top:14px; font-size:11px; color:var(--muted); }
-.pag-btns { display:flex; gap:6px; }
-.pag-btn { background:var(--dark3); border:1px solid var(--gold-border); color:var(--muted); font-size:11px; font-family:'DM Sans',sans-serif; padding:5px 14px; border-radius:5px; cursor:pointer; transition:all .15s; }
-.pag-btn:hover:not(:disabled) { background:var(--gold-dim); border-color:var(--gold); color:var(--gold); }
-.pag-btn:disabled { opacity:.3; cursor:not-allowed; }
-
-.footer { text-align:center; font-size:10px; color:var(--dim); padding:20px 0 32px; letter-spacing:2px; text-transform:uppercase; }
-
-@media(max-width:900px){
-  .kpi-row,.grid-2-1,.grid-3,.insights-row { grid-template-columns:1fr; }
-  .wrap { padding:14px 12px 40px; }
-  .hdr { padding:0 14px; }
-}
-@media(max-width:580px){ .kpi-row { grid-template-columns:1fr 1fr; } }
+@media(max-width:900px){.kpi-grid,.g21,.g3,.ig{grid-template-columns:1fr}.wrap{padding:14px 12px 40px}.hdr{padding:0 14px}}
+@media(max-width:580px){.kpi-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 
-<div id="loading">
+<div id="ld">
   <div class="ld-logo">Resolutiva</div>
   <div class="ld-sub">Carregando dados da planilha...</div>
   <div class="ld-bar"><div class="ld-fill"></div></div>
@@ -155,98 +121,116 @@ tbody td { padding: 9px 10px; font-size: 12px; vertical-align: middle; white-spa
 </div>
 
 <header class="hdr">
-  <div class="hdr-left">
-    <img id="logoImg" class="logo-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Logo" onerror="this.style.display='none';document.getElementById('logoFb').style.display='flex'">
-    <div id="logoFb" class="logo-fallback" style="display:none">R</div>
+  <div class="hdr-l">
+    <!-- Logo fiel ao Denis: fundo escuro, raio dourado, carro, borda dourada -->
+    <div class="logo-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="46" height="46">
+        <rect width="100" height="100" rx="12" fill="#1a1a1a"/>
+        <rect x="5" y="5" width="90" height="90" rx="9" fill="none" stroke="#E8A020" stroke-width="2.5"/>
+        <!-- carro silhueta -->
+        <path d="M14 68 L14 58 Q14 55 17 55 L22 55 L30 38 L70 38 L78 55 L83 55 Q86 55 86 58 L86 68 Z" fill="#2a2a2a" stroke="#3a3a3a" stroke-width="1"/>
+        <path d="M32 38 L38 24 L62 24 L68 38Z" fill="#222" stroke="#333" stroke-width="1"/>
+        <!-- rodas -->
+        <circle cx="30" cy="69" r="9" fill="#111" stroke="#E8A020" stroke-width="2"/>
+        <circle cx="70" cy="69" r="9" fill="#111" stroke="#E8A020" stroke-width="2"/>
+        <circle cx="30" cy="69" r="3" fill="#E8A020"/>
+        <circle cx="70" cy="69" r="3" fill="#E8A020"/>
+        <!-- raio elétrico central -->
+        <path d="M55 14 L45 38 L52 38 L40 62 L62 34 L54 34 Z" fill="#E8A020"/>
+        <!-- faróis -->
+        <rect x="14" y="56" width="8" height="4" rx="2" fill="#E8A020" opacity=".7"/>
+        <rect x="78" y="56" width="8" height="4" rx="2" fill="#E8A020" opacity=".7"/>
+      </svg>
+    </div>
     <div>
       <div class="brand">Resolutiva</div>
       <div class="brand-sub">Auto Elétrica · Dashboard Gerencial</div>
     </div>
   </div>
-  <div class="hdr-right">
-    <span class="upd-time" id="updTime"></span>
-    <span class="period-pill" id="periodPill">—</span>
-    <button class="btn-refresh" onclick="loadData()">↻ Atualizar</button>
+  <div class="hdr-r">
+    <span class="upd" id="updTime"></span>
+    <span class="pill" id="periodPill">—</span>
+    <button class="btn-upd" onclick="loadData()">↻ Atualizar</button>
   </div>
 </header>
 
 <div class="wrap" id="app" style="display:none">
 
-  <div class="sec-label">Resumo do período</div>
-  <div class="kpi-row">
+  <div class="sec">Resumo do período</div>
+  <div class="kpi-grid">
     <div class="kpi">
-      <div class="kpi-lbl">Total de OS</div>
-      <div class="kpi-val" id="k-os">—</div>
-      <div class="kpi-sub">ordens abertas</div>
-      <div class="kpi-tag" id="k-periodo">—</div>
+      <div class="k-lbl">Total de OS</div>
+      <div class="k-val" id="kOs">—</div>
+      <div class="k-sub">ordens abertas</div>
+      <div class="k-tag" id="kPer">—</div>
     </div>
     <div class="kpi">
-      <div class="kpi-lbl">Faturamento Total</div>
-      <div class="kpi-val" id="k-fat">—</div>
-      <div class="kpi-sub">mão de obra + peças</div>
-      <div class="kpi-tag up" id="k-ticket">—</div>
+      <div class="k-lbl">Faturamento Total</div>
+      <div class="k-val" id="kFat">—</div>
+      <div class="k-sub">mão de obra + peças</div>
+      <div class="k-tag up" id="kTick">—</div>
     </div>
     <div class="kpi">
-      <div class="kpi-lbl">Receita Mão de Obra</div>
-      <div class="kpi-val" id="k-mo">—</div>
-      <div class="kpi-sub">diagnóstico + execução</div>
-      <div class="kpi-tag" id="k-mopct">—</div>
+      <div class="k-lbl">Receita Mão de Obra</div>
+      <div class="k-val" id="kMo">—</div>
+      <div class="k-sub">diagnóstico + execução</div>
+      <div class="k-tag" id="kMoPct">—</div>
     </div>
     <div class="kpi">
-      <div class="kpi-lbl">Receita em Peças</div>
-      <div class="kpi-val" id="k-pec">—</div>
-      <div class="kpi-sub">revendidas ao cliente</div>
-      <div class="kpi-tag" id="k-pecpct">—</div>
+      <div class="k-lbl">Receita em Peças</div>
+      <div class="k-val" id="kPec">—</div>
+      <div class="k-sub">revendidas ao cliente</div>
+      <div class="k-tag" id="kPecPct">—</div>
     </div>
   </div>
 
-  <div class="sec-label">Análise financeira</div>
-  <div class="grid-2-1">
+  <div class="sec">Análise financeira</div>
+  <div class="g21">
     <div class="card">
-      <div class="card-title"><i></i>Faturamento por dia — Mão de Obra vs Peças (R$)</div>
-      <div class="chart-box" style="height:220px"><canvas id="cDia"></canvas></div>
-      <div class="legend">
-        <div class="leg-item"><div class="leg-dot" style="background:#E8A020"></div>Mão de Obra</div>
-        <div class="leg-item"><div class="leg-dot" style="background:rgba(232,160,32,0.28)"></div>Peças</div>
+      <div class="ct"><em></em>Faturamento por dia — Mão de Obra vs Peças (R$)</div>
+      <div class="cbox" style="height:220px"><canvas id="cDia"></canvas></div>
+      <div class="leg">
+        <div class="li"><div class="ld2" style="background:#E8A020"></div>Mão de Obra</div>
+        <div class="li"><div class="ld2" style="background:rgba(232,160,32,.28)"></div>Peças</div>
       </div>
     </div>
     <div class="card">
-      <div class="card-title"><i></i>Status das OS</div>
-      <div class="chart-box" style="height:170px"><canvas id="cStatus"></canvas></div>
-      <div class="legend" id="legStatus"></div>
+      <div class="ct"><em></em>Status das OS</div>
+      <div class="cbox" style="height:170px"><canvas id="cStatus"></canvas></div>
+      <div class="leg" id="legSt"></div>
     </div>
   </div>
 
-  <div class="grid-3" style="margin-top:12px">
+  <div class="g3" style="margin-top:12px">
     <div class="card">
-      <div class="card-title"><i></i>Sistemas mais atendidos</div>
-      <div class="chart-box" style="height:200px"><canvas id="cSis"></canvas></div>
+      <div class="ct"><em></em>Sistemas mais atendidos</div>
+      <div class="cbox" style="height:200px"><canvas id="cSis"></canvas></div>
     </div>
     <div class="card">
-      <div class="card-title"><i></i>Ticket médio por sistema (R$)</div>
-      <div class="chart-box" style="height:200px"><canvas id="cTicket"></canvas></div>
+      <div class="ct"><em></em>Ticket médio por sistema (R$)</div>
+      <div class="cbox" style="height:200px"><canvas id="cTk"></canvas></div>
     </div>
     <div class="card">
-      <div class="card-title"><i></i>Distribuição semanal de OS</div>
-      <div class="chart-box" style="height:200px"><canvas id="cSem"></canvas></div>
+      <div class="ct"><em></em>Distribuição semanal de OS</div>
+      <div class="cbox" style="height:200px"><canvas id="cSem"></canvas></div>
     </div>
   </div>
 
-  <div class="sec-label">Destaques para reunião</div>
-  <div class="insights-row" id="insights"></div>
+  <div class="sec">Destaques para a reunião</div>
+  <div class="ig" id="insights"></div>
 
-  <div class="sec-label">Histórico completo de OS</div>
-  <div class="tbl-card">
-    <div class="tbl-top">
-      <div class="card-title" style="margin:0"><i></i>Todas as ordens do período</div>
-      <div class="tbl-filters">
-        <select class="inp" id="fSt" onchange="filter()">
+  <div class="sec">Histórico completo de OS</div>
+  <div class="tc">
+    <div class="tt">
+      <div class="ct" style="margin:0"><em></em>Todas as ordens do período</div>
+      <div class="tf">
+        <select class="inp" id="fSt" onchange="applyFilter()">
           <option value="">Todos os status</option>
           <option>OS Completa</option>
           <option>Só Diagnóstico</option>
           <option>Reparo Aprovado</option>
         </select>
-        <input class="inp inp-w" type="text" id="fQ" placeholder="Buscar cliente, OS, veículo..." oninput="filter()">
+        <input class="inp inp-w" type="text" id="fQ" placeholder="Buscar cliente, OS, veículo..." oninput="applyFilter()">
       </div>
     </div>
     <table>
@@ -260,130 +244,191 @@ tbody td { padding: 9px 10px; font-size: 12px; vertical-align: middle; white-spa
     </table>
     <div class="pag">
       <span id="pagInfo"></span>
-      <div class="pag-btns">
-        <button class="pag-btn" id="bPrev" onclick="goPage(-1)">← Anterior</button>
-        <button class="pag-btn" id="bNext" onclick="goPage(1)">Próxima →</button>
+      <div class="pbs">
+        <button class="pb" id="bPrev" onclick="goPage(-1)">← Anterior</button>
+        <button class="pb" id="bNext" onclick="goPage(1)">Próxima →</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="footer" id="ftr" style="display:none">
+<div class="ftr" id="ftr" style="display:none">
   Resolutiva Auto Elétrica &nbsp;·&nbsp; Gestão: Giordana Garcia · Sagrada Estratégia
 </div>
 
 <script>
-// ─── CONFIG ────────────────────────────────────────────────
+// ── CONFIG ───────────────────────────────────────────────────
 const SHEET_ID = '12D7Mykcu18iD827n5ffSAiHuve9nj0v4jIZ8T2bY3VU';
 const CSV_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`;
 
-// Logo do Denis (imagem enviada convertida para URL base64 inline seria enorme;
-// usamos a URL pública da logo hospedada — se não carregar, mostra fallback "R")
-// Para incluir a logo do Denis, vamos usar um inline SVG baseado no logo dele
-const LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="44" height="44">
-  <rect width="100" height="100" rx="12" fill="#1a1a1a"/>
-  <rect x="8" y="8" width="84" height="84" rx="10" fill="none" stroke="#E8A020" stroke-width="2"/>
-  <!-- silhueta carro simplificada -->
-  <path d="M18 62 L18 55 L25 42 L75 42 L82 55 L82 62 Z" fill="#333" stroke="#555" stroke-width="1"/>
-  <path d="M30 42 L35 30 L65 30 L70 42Z" fill="#2a2a2a" stroke="#444" stroke-width="1"/>
-  <circle cx="30" cy="63" r="7" fill="#222" stroke="#E8A020" stroke-width="1.5"/>
-  <circle cx="70" cy="63" r="7" fill="#222" stroke="#E8A020" stroke-width="1.5"/>
-  <!-- raio elétrico -->
-  <path d="M52 20 L44 40 L50 40 L42 60 L58 36 L51 36 Z" fill="#E8A020"/>
-</svg>`;
-
-// ─── PARSE CSV ─────────────────────────────────────────────
+// ── PARSE CSV robusto ────────────────────────────────────────
+// O Google Sheets exporta valores monetários como: "R$ 1.200,00"
+// com aspas quando contêm vírgula — o parser precisa respeitar isso
 function parseCSV(raw) {
-  const lines = raw.trim().split(/\r?\n/);
-  if (lines.length < 2) return [];
-  // parse colunas respeitando aspas
-  function splitLine(line) {
-    const cols = []; let cur = '', q = false;
-    for (const c of line) {
-      if (c === '"') { q = !q; }
-      else if (c === ',' && !q) { cols.push(cur); cur = ''; }
-      else cur += c;
+  const lines = raw.replace(/\r/g, '').trim().split('\n');
+  if (lines.length < 2) return { headers:[], rows:[] };
+
+  function splitRow(line) {
+    const cols = [];
+    let cur = '', inQ = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') {
+        if (inQ && line[i+1] === '"') { cur += '"'; i++; } // aspas escapadas
+        else inQ = !inQ;
+      } else if (ch === ',' && !inQ) {
+        cols.push(cur); cur = '';
+      } else {
+        cur += ch;
+      }
     }
     cols.push(cur);
-    return cols.map(s => s.trim().replace(/^"|"$/g,''));
+    return cols.map(s => s.trim());
   }
-  const headers = splitLine(lines[0]);
-  return lines.slice(1)
-    .map(l => { const c = splitLine(l); const o = {}; headers.forEach((h,i) => o[h] = c[i]||''); return o; })
-    .filter(r => r['Num'] && r['Num'].startsWith('#'));
+
+  const headers = splitRow(lines[0]);
+  const rows = lines.slice(1).map(l => {
+    const cols = splitRow(l);
+    const obj = {};
+    headers.forEach((h, i) => { obj[h] = cols[i] || ''; });
+    return obj;
+  });
+  return { headers, rows };
 }
 
-// ─── PARSE VALOR BRL ───────────────────────────────────────
-// A planilha tem colunas (por índice, após os headers):
-// 0=Num,1=Data,2=Status,3=Criador,4=Nome,5=WhatsApp,6=Veículo,
-// 7=Placa,8=KM,9=Queixa,10=Sistemas,11=Códigos,12=Diagnóstico,
-// 13=Resultado,14=Solução,15=Peças(texto),16=DiagR$(MO),17=PecasR$,18=Total
+// ── PARSE VALOR BRL ──────────────────────────────────────────
+// Formatos possíveis: "R$ 120,00" / "R$120,00" / "120.00" / "—" / ""
 function parseBRL(s) {
-  if (!s || s === '—' || s === '-' || s.trim() === '') return 0;
-  const clean = s.replace(/R\$\s*/gi,'').replace(/\s/g,'').replace(/\./g,'').replace(',','.');
-  const v = parseFloat(clean);
+  if (!s) return 0;
+  s = s.toString().trim();
+  if (s === '—' || s === '-' || s === '') return 0;
+  // remove R$, espaços, pontos de milhar; troca vírgula decimal por ponto
+  s = s.replace(/R\$\s*/gi, '').replace(/\s/g, '');
+  // Se tem vírgula: formato BR (1.200,00)
+  if (s.includes(',')) {
+    s = s.replace(/\./g, '').replace(',', '.');
+  }
+  const v = parseFloat(s);
   return isNaN(v) ? 0 : v;
 }
 
-function normalize(rows) {
-  return rows.map(r => {
-    const vals = Object.values(r);
-    // índices: 16=MO, 17=Peças$, 18=Total (baseado na estrutura da planilha do Denis)
-    const mo    = parseBRL(vals[17] || "0");
-    const pecas = parseBRL(vals[18] || "0");
-    let   total = parseBRL(vals[19] || "0");
-    if (total === 0 && (mo > 0 || pecas > 0)) total = mo + pecas;
+// ── NORMALIZA LINHAS ─────────────────────────────────────────
+// Detecta as colunas de valor pelo nome do header
+function normalizeOS(headers, rows) {
+  // Mapeia índices pelos headers
+  const hi = {};
+  headers.forEach((h, i) => { hi[h.toLowerCase().trim()] = i; });
 
-    const dateParts = (r['Data']||'').split('/');
-    const dd = (dateParts[0]||'').padStart(2,'0');
-    const mm = (dateParts[1]||'').padStart(2,'0');
-    const dia = dd && mm ? `${dd}/${mm}` : (r['Data']||'—');
+  // Debug: mostra headers no console
+  console.log('Headers encontrados:', headers);
 
-    const d = parseInt(dateParts[0]) || 1;
-    const semana = d <= 7 ? 'Sem 1' : d <= 14 ? 'Sem 2' : d <= 21 ? 'Sem 3' : 'Sem 4';
+  return rows
+    .filter(r => (r['Num']||r[headers[0]]||'').startsWith('#'))
+    .map(r => {
+      const vals = Object.values(r);
 
-    return {
-      num:     r['Num']     || '—',
-      data:    r['Data']    || '—',
-      dia, semana,
-      status:  r['Status']  || '—',
-      cliente: r['Nome']    || r['Criador'] || '—',
-      veiculo: r['Veículo'] || '—',
-      sistema: (r['Sistemas']||'—').split(',')[0].trim(),
-      mo, pecas, total
-    };
-  });
+      // Tenta pelos nomes de coluna primeiro, fallback para índice
+      // A planilha do Denis: col Q=DiagR$(MO), col R=PecasR$, col S=Total, col T=obs
+      // Índices: 0=Num,1=Data,2=Status,3=Criador,4=Nome,5=Zap,6=Veiculo,7=Placa,
+      //          8=KM,9=Queixa,10=Sistemas,11=Codigos,12=Diag,13=Resultado,14=Solucao,
+      //          15=Pecas(texto),16=DiagR$,17=?,18=?,19=?
+      // Como os headers extras não têm nome, usamos índice 16,17,18
+      // MAS o Google Sheets pode exportar colunas sem header como ""
+      // Vamos pegar os 4 últimos valores numéricos de cada linha
+
+      // Estratégia: pega todos os valores que parecem monetários (contêm R$ ou são números)
+      // das últimas 6 colunas
+      const last6 = vals.slice(Math.max(0, vals.length - 6));
+      const monetarios = last6
+        .map(v => ({ raw: v, val: parseBRL(v) }))
+        .filter(x => x.val > 0 || (x.raw && x.raw.includes('R$')));
+
+      // Espera-se: [DiagR$(MO), PecasR$, Total]
+      // Se tiver 3+ monetários, pega os últimos 3
+      let mo = 0, pecas = 0, total = 0;
+      if (monetarios.length >= 3) {
+        mo    = monetarios[monetarios.length - 3].val;
+        pecas = monetarios[monetarios.length - 2].val;
+        total = monetarios[monetarios.length - 1].val;
+      } else if (monetarios.length === 2) {
+        mo    = monetarios[0].val;
+        total = monetarios[1].val;
+      } else if (monetarios.length === 1) {
+        total = monetarios[0].val;
+      }
+
+      // Fallback: se total=0 mas tem mo ou pecas
+      if (total === 0 && (mo > 0 || pecas > 0)) total = mo + pecas;
+
+      const data   = r['Data'] || vals[1] || '';
+      const parts  = data.split('/');
+      const dd = (parts[0]||'').padStart(2,'0');
+      const mm = (parts[1]||'').padStart(2,'0');
+      const dia = dd && mm ? `${dd}/${mm}` : data;
+
+      const d = parseInt(parts[0]||'1');
+      const semana = d <= 7 ? 'Sem 1' : d <= 14 ? 'Sem 2' : d <= 21 ? 'Sem 3' : 'Sem 4';
+
+      const sistemaRaw = r['Sistemas'] || vals[10] || '—';
+      const sistema    = sistemaRaw.split(',')[0].trim() || '—';
+
+      return {
+        num:     r['Num']     || vals[0] || '—',
+        data,
+        dia,
+        semana,
+        status:  r['Status']  || vals[2] || '—',
+        cliente: r['Nome']    || r['Criador'] || vals[4] || vals[3] || '—',
+        veiculo: r['Veículo'] || vals[6] || '—',
+        sistema,
+        mo, pecas, total,
+        _dbg: { last6, monetarios } // para debug
+      };
+    });
 }
 
-// ─── CHART HELPERS ─────────────────────────────────────────
+// ── CHARTS ──────────────────────────────────────────────────
 const CH = {};
 function mkChart(id, cfg) {
-  if (CH[id]) CH[id].destroy();
-  CH[id] = new Chart(document.getElementById(id), cfg);
+  if (CH[id]) { CH[id].destroy(); delete CH[id]; }
+  const el = document.getElementById(id);
+  if (!el) return;
+  CH[id] = new Chart(el, cfg);
 }
 
-// ─── BUILD CHARTS ──────────────────────────────────────────
+const TICK_OPTS = (axis, prefix='') => ({
+  color: '#6e6a64', font: { size: 10 },
+  callback: v => prefix + v.toLocaleString('pt-BR')
+});
+
 function buildCharts(OS) {
   // Faturamento por dia
   const byDay = {};
   OS.forEach(o => {
-    if (!byDay[o.dia]) byDay[o.dia] = {mo:0,pec:0};
+    if (!byDay[o.dia]) byDay[o.dia] = { mo: 0, pec: 0 };
     byDay[o.dia].mo  += o.mo;
     byDay[o.dia].pec += o.pecas;
   });
-  const dias = Object.keys(byDay).sort();
+  const dias = Object.keys(byDay).sort((a,b)=> {
+    const [da,ma]=a.split('/').map(Number), [db,mb]=b.split('/').map(Number);
+    return ma!==mb ? ma-mb : da-db;
+  });
+
   mkChart('cDia', {
-    type:'bar',
-    data:{ labels:dias, datasets:[
-      {label:'MO',  data:dias.map(d=>byDay[d].mo),  backgroundColor:'#E8A020', borderRadius:3, borderSkipped:false},
-      {label:'Peças',data:dias.map(d=>byDay[d].pec), backgroundColor:'rgba(232,160,32,0.25)', borderRadius:3, borderSkipped:false}
-    ]},
-    options:{
+    type: 'bar',
+    data: {
+      labels: dias,
+      datasets: [
+        { label:'MO',    data: dias.map(d=>byDay[d].mo),  backgroundColor:'#E8A020', borderRadius:3, borderSkipped:false },
+        { label:'Peças', data: dias.map(d=>byDay[d].pec), backgroundColor:'rgba(232,160,32,.25)', borderRadius:3, borderSkipped:false }
+      ]
+    },
+    options: {
       responsive:true, maintainAspectRatio:false,
-      plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>' R$ '+c.parsed.y.toLocaleString('pt-BR')}}},
+      plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:c=>' R$ '+c.parsed.y.toLocaleString('pt-BR') } } },
       scales:{
-        x:{stacked:true, ticks:{color:'#6e6a64',font:{size:10},autoSkip:false,maxRotation:45}, grid:{color:'rgba(232,160,32,0.07)'}},
-        y:{stacked:true, ticks:{color:'#6e6a64',font:{size:10},callback:v=>'R$'+v.toLocaleString('pt-BR')}, grid:{color:'rgba(232,160,32,0.07)'}}
+        x:{ stacked:true, ticks:{color:'#6e6a64',font:{size:10},autoSkip:false,maxRotation:45}, grid:{color:'rgba(232,160,32,.07)'} },
+        y:{ stacked:true, ticks:{color:'#6e6a64',font:{size:10},callback:v=>'R$'+v.toLocaleString('pt-BR')}, grid:{color:'rgba(232,160,32,.07)'} }
       }
     }
   });
@@ -391,228 +436,247 @@ function buildCharts(OS) {
   // Status
   const stC = {};
   OS.forEach(o => { const s=o.status||'Sem status'; stC[s]=(stC[s]||0)+1; });
-  const stColors = {'OS Completa':'#4caf7d','Só Diagnóstico':'#E8A020','Reparo Aprovado':'#5a9fd4'};
-  const stLbls = Object.keys(stC), stBg = stLbls.map(l=>stColors[l]||'#888');
+  const ST_COLORS = {'OS Completa':'#4caf7d','Só Diagnóstico':'#E8A020','Reparo Aprovado':'#5a9fd4'};
+  const stL = Object.keys(stC), stB = stL.map(l=>ST_COLORS[l]||'#888');
   mkChart('cStatus', {
     type:'doughnut',
-    data:{labels:stLbls, datasets:[{data:Object.values(stC), backgroundColor:stBg, borderColor:'#1c1c1c', borderWidth:3, hoverOffset:6}]},
-    options:{responsive:true, maintainAspectRatio:false, cutout:'65%', plugins:{legend:{display:false}}}
+    data:{ labels:stL, datasets:[{ data:Object.values(stC), backgroundColor:stB, borderColor:'#1c1c1c', borderWidth:3, hoverOffset:5 }] },
+    options:{ responsive:true, maintainAspectRatio:false, cutout:'65%', plugins:{legend:{display:false}} }
   });
-  document.getElementById('legStatus').innerHTML = stLbls.map((l,i)=>
-    `<div class="leg-item"><div class="leg-dot" style="background:${stBg[i]}"></div>${l} (${stC[l]})</div>`
+  document.getElementById('legSt').innerHTML = stL.map((l,i)=>
+    `<div class="li"><div class="ld2" style="background:${stB[i]}"></div>${l} (${stC[l]})</div>`
   ).join('');
 
   // Sistemas
   const sisC = {};
-  OS.forEach(o=>{ sisC[o.sistema]=(sisC[o.sistema]||0)+1; });
+  OS.forEach(o => { const s=o.sistema||'—'; sisC[s]=(sisC[s]||0)+1; });
   const sisSorted = Object.entries(sisC).sort((a,b)=>b[1]-a[1]).slice(0,7);
   mkChart('cSis', {
     type:'bar',
-    data:{labels:sisSorted.map(s=>s[0]), datasets:[{
+    data:{ labels:sisSorted.map(s=>s[0]), datasets:[{
       data:sisSorted.map(s=>s[1]),
-      backgroundColor:sisSorted.map((_,i)=>`rgba(232,160,32,${Math.max(0.9-i*0.1,0.2)})`),
+      backgroundColor:sisSorted.map((_,i)=>`rgba(232,160,32,${Math.max(.9-i*.11,.18)})`),
       borderRadius:3, borderSkipped:false
     }]},
     options:{
       indexAxis:'y', responsive:true, maintainAspectRatio:false,
       plugins:{legend:{display:false}},
       scales:{
-        x:{ticks:{color:'#6e6a64',font:{size:10},stepSize:1}, grid:{color:'rgba(232,160,32,0.07)'}},
-        y:{ticks:{color:'#e8e2d8',font:{size:10}}, grid:{display:false}}
+        x:{ ticks:{color:'#6e6a64',font:{size:10},stepSize:1}, grid:{color:'rgba(232,160,32,.07)'} },
+        y:{ ticks:{color:'#e8e2d8',font:{size:10}}, grid:{display:false} }
       }
     }
   });
 
   // Ticket médio
   const sisTot = {};
-  OS.forEach(o=>{
-    if(!sisTot[o.sistema]) sisTot[o.sistema]={sum:0,n:0};
-    sisTot[o.sistema].sum+=o.total; sisTot[o.sistema].n++;
+  OS.forEach(o => {
+    const s=o.sistema||'—';
+    if(!sisTot[s]) sisTot[s]={sum:0,n:0};
+    sisTot[s].sum+=o.total; sisTot[s].n++;
   });
-  const tkData = Object.entries(sisTot).map(([k,v])=>({s:k,avg:Math.round(v.sum/v.n)})).sort((a,b)=>b.avg-a.avg).slice(0,6);
-  mkChart('cTicket', {
+  const tkData = Object.entries(sisTot)
+    .map(([k,v])=>({s:k,avg:Math.round(v.sum/v.n)}))
+    .sort((a,b)=>b.avg-a.avg).slice(0,6);
+  mkChart('cTk', {
     type:'bar',
-    data:{labels:tkData.map(d=>d.s), datasets:[{
-      data:tkData.map(d=>d.avg), backgroundColor:'rgba(90,159,212,0.65)', borderRadius:3, borderSkipped:false
+    data:{ labels:tkData.map(d=>d.s), datasets:[{
+      data:tkData.map(d=>d.avg), backgroundColor:'rgba(90,159,212,.65)', borderRadius:3, borderSkipped:false
     }]},
     options:{
       indexAxis:'y', responsive:true, maintainAspectRatio:false,
-      plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>' R$ '+c.parsed.x.toLocaleString('pt-BR')}}},
+      plugins:{ legend:{display:false}, tooltip:{callbacks:{label:c=>' R$ '+c.parsed.x.toLocaleString('pt-BR')}} },
       scales:{
-        x:{ticks:{color:'#6e6a64',font:{size:10},callback:v=>'R$'+v}, grid:{color:'rgba(232,160,32,0.07)'}},
-        y:{ticks:{color:'#e8e2d8',font:{size:10}}, grid:{display:false}}
+        x:{ ticks:{color:'#6e6a64',font:{size:10},callback:v=>'R$'+v.toLocaleString('pt-BR')}, grid:{color:'rgba(232,160,32,.07)'} },
+        y:{ ticks:{color:'#e8e2d8',font:{size:10}}, grid:{display:false} }
       }
     }
   });
 
   // Semanal
   const semC = {};
-  OS.forEach(o=>{ semC[o.semana]=(semC[o.semana]||0)+1; });
-  const sems = ['Sem 1','Sem 2','Sem 3','Sem 4'].filter(s=>semC[s]);
+  OS.forEach(o => { semC[o.semana]=(semC[o.semana]||0)+1; });
+  const SEMS = ['Sem 1','Sem 2','Sem 3','Sem 4'];
+  const semsPresentes = SEMS.filter(s=>semC[s]>0);
   mkChart('cSem', {
     type:'bar',
-    data:{labels:sems, datasets:[{
-      data:sems.map(s=>semC[s]),
-      backgroundColor:sems.map((_,i)=>`rgba(232,160,32,${0.85-i*0.15})`),
-      borderRadius:4, borderSkipped:false
-    }]},
+    data:{
+      labels: semsPresentes.map(s=>{
+        const map={'Sem 1':'1ª sem','Sem 2':'2ª sem','Sem 3':'3ª sem','Sem 4':'4ª sem'};
+        return map[s]||s;
+      }),
+      datasets:[{
+        data:semsPresentes.map(s=>semC[s]),
+        backgroundColor:semsPresentes.map((_,i)=>`rgba(232,160,32,${.85-i*.15})`),
+        borderRadius:4, borderSkipped:false
+      }]
+    },
     options:{
       responsive:true, maintainAspectRatio:false,
-      plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>c.parsed.y+' OS'}}},
+      plugins:{ legend:{display:false}, tooltip:{callbacks:{label:c=>c.parsed.y+' OS'}} },
       scales:{
-        x:{ticks:{color:'#6e6a64',font:{size:10}}, grid:{display:false}},
-        y:{ticks:{color:'#6e6a64',font:{size:10},stepSize:1}, grid:{color:'rgba(232,160,32,0.07)'}}
+        x:{ ticks:{color:'#6e6a64',font:{size:10}}, grid:{display:false} },
+        y:{ ticks:{color:'#6e6a64',font:{size:10},stepSize:1}, grid:{color:'rgba(232,160,32,.07)'} }
       }
     }
   });
 }
 
-// ─── KPIs ──────────────────────────────────────────────────
+// ── KPIs ────────────────────────────────────────────────────
 function buildKPIs(OS) {
-  const n    = OS.length;
-  const fat  = OS.reduce((s,o)=>s+o.total,0);
-  const mo   = OS.reduce((s,o)=>s+o.mo,0);
-  const pec  = OS.reduce((s,o)=>s+o.pecas,0);
-  const tick = n ? Math.round(fat/n) : 0;
-  const fmt  = v => 'R$ '+v.toLocaleString('pt-BR');
+  const n   = OS.length;
+  const fat = OS.reduce((s,o)=>s+o.total,0);
+  const mo  = OS.reduce((s,o)=>s+o.mo,0);
+  const pec = OS.reduce((s,o)=>s+o.pecas,0);
+  const tk  = n ? Math.round(fat/n) : 0;
+  const fmt = v => 'R$\u00a0' + v.toLocaleString('pt-BR');
 
-  const datas = OS.map(o=>o.data).filter(Boolean).sort();
-  const periodo = datas.length >= 2 ? `${datas[0]} a ${datas[datas.length-1]}` : datas[0]||'—';
+  const datas = OS.map(o=>o.data).filter(Boolean).sort((a,b)=>{
+    const pa=a.split('/'), pb=b.split('/');
+    const ya=pa[2]||0, yb=pb[2]||0;
+    const ma=pa[1]||0, mb=pb[1]||0;
+    const da=pa[0]||0, db=pb[0]||0;
+    return ya!==yb?ya-yb:ma!==mb?ma-mb:da-db;
+  });
+  const per = datas.length >= 2
+    ? `${datas[0]} a ${datas[datas.length-1]}`
+    : datas[0] || '—';
 
-  document.getElementById('k-os').textContent     = n;
-  document.getElementById('k-periodo').textContent = periodo;
-  document.getElementById('k-fat').textContent    = fmt(fat);
-  document.getElementById('k-ticket').textContent = `↑ Ticket médio: ${fmt(tick)}`;
-  document.getElementById('k-mo').textContent     = fmt(mo);
-  document.getElementById('k-mopct').textContent  = fat ? `${Math.round(mo/fat*100)}% do faturamento` : '—';
-  document.getElementById('k-pec').textContent    = fmt(pec);
-  document.getElementById('k-pecpct').textContent = fat ? `${Math.round(pec/fat*100)}% do faturamento` : '—';
+  document.getElementById('kOs').textContent    = n;
+  document.getElementById('kPer').textContent   = per;
+  document.getElementById('kFat').textContent   = fmt(fat);
+  document.getElementById('kTick').textContent  = `↑ Ticket médio: ${fmt(tk)}`;
+  document.getElementById('kMo').textContent    = fmt(mo);
+  document.getElementById('kMoPct').textContent = fat ? `${Math.round(mo/fat*100)}% do faturamento` : '—';
+  document.getElementById('kPec').textContent   = fmt(pec);
+  document.getElementById('kPecPct').textContent= fat ? `${Math.round(pec/fat*100)}% do faturamento` : '—';
 
-  // Período no header
-  const meses = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  // Pill do período
+  const MESES = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
   if (datas[0]) {
     const p = datas[0].split('/');
-    const m = parseInt(p[1])-1, y = p[2]||new Date().getFullYear();
-    document.getElementById('periodPill').textContent = `${meses[m]||''} ${y}`;
+    const m = parseInt(p[1])-1, y = p[2] || new Date().getFullYear();
+    document.getElementById('periodPill').textContent = `${MESES[m]||''} ${y}`;
   }
 }
 
-// ─── INSIGHTS ──────────────────────────────────────────────
+// ── INSIGHTS ────────────────────────────────────────────────
 function buildInsights(OS) {
-  const sisC = {}, sisTot = {};
+  const sisC={}, sisTot={};
   OS.forEach(o=>{
-    sisC[o.sistema]=(sisC[o.sistema]||0)+1;
-    if(!sisTot[o.sistema]) sisTot[o.sistema]={sum:0,n:0};
-    sisTot[o.sistema].sum+=o.total; sisTot[o.sistema].n++;
+    const s=o.sistema||'—';
+    sisC[s]=(sisC[s]||0)+1;
+    if(!sisTot[s]) sisTot[s]={sum:0,n:0};
+    sisTot[s].sum+=o.total; sisTot[s].n++;
   });
-  const topSis = Object.entries(sisC).sort((a,b)=>b[1]-a[1])[0]||['—',0];
-  const topTk  = Object.entries(sisTot).map(([k,v])=>({s:k,avg:Math.round(v.sum/v.n)})).sort((a,b)=>b.avg-a.avg)[0]||{s:'—',avg:0};
-  const fat    = OS.reduce((s,o)=>s+o.total,0);
-  const pec    = OS.reduce((s,o)=>s+o.pecas,0);
-  const pctPec = fat ? Math.round(pec/fat*100) : 0;
-  const clisUn = new Set(OS.map(o=>o.cliente.toLowerCase())).size;
+  const topSis   = Object.entries(sisC).sort((a,b)=>b[1]-a[1])[0]||['—',0];
+  const topTk    = Object.entries(sisTot).map(([k,v])=>({s:k,avg:Math.round(v.sum/v.n)})).sort((a,b)=>b.avg-a.avg)[0]||{s:'—',avg:0};
+  const fat      = OS.reduce((s,o)=>s+o.total,0);
+  const pec      = OS.reduce((s,o)=>s+o.pecas,0);
+  const pctPec   = fat ? Math.round(pec/fat*100) : 0;
+  const clientes = new Set(OS.map(o=>o.cliente.toLowerCase().trim())).size;
 
   document.getElementById('insights').innerHTML = [
-    {icon:'⚡',title:'Serviço mais recorrente',
-     body:`<b>${topSis[0]}</b> foi o sistema mais atendido: <b>${topSis[1]} OS</b>. Pode ser posicionado como especialidade na comunicação do Denis.`},
-    {icon:'💰',title:'Maior retorno por OS',
-     body:`<b>${topTk.s}</b> tem o melhor ticket médio: <b>R$ ${topTk.avg.toLocaleString('pt-BR')}</b> por OS. Vale dar destaque no marketing.`},
-    {icon:'👥',title:'Clientes únicos no período',
-     body:`<b>${clisUn} clientes diferentes</b> atendidos. Boa base para estratégia de reativação e fidelização.`}
-  ].map(i=>`
-    <div class="insight">
-      <div class="ins-icon">${i.icon}</div>
-      <div><div class="ins-title">${i.title}</div><div class="ins-body">${i.body}</div></div>
+    { icon:'⚡', title:'Serviço mais recorrente',
+      body:`<b>${topSis[0]}</b> foi o sistema mais atendido com <b>${topSis[1]} OS</b>. Pode ser posicionado como especialidade na comunicação da Resolutiva.` },
+    { icon:'💰', title:'Maior ticket por serviço',
+      body:`<b>${topTk.s}</b> tem o melhor ticket médio: <b>R$&nbsp;${topTk.avg.toLocaleString('pt-BR')}</b> por OS. Prioridade no marketing.` },
+    { icon:'👥', title:'Clientes únicos atendidos',
+      body:`<b>${clientes} clientes diferentes</b> no período. Boa base para estratégia de reativação e fidelização.` }
+  ].map(x=>`
+    <div class="ins">
+      <div class="ii">${x.icon}</div>
+      <div><div class="it">${x.title}</div><div class="ib">${x.body}</div></div>
     </div>
   `).join('');
 }
 
-// ─── TABLE ─────────────────────────────────────────────────
+// ── TABELA ──────────────────────────────────────────────────
 let ALL=[], FLT=[], pg=0;
 const PPG=10;
+
 function badge(s){
-  if(s==='OS Completa')    return '<span class="badge b-ok">✓ Completa</span>';
-  if(s==='Só Diagnóstico') return '<span class="badge b-diag">⚡ Diagnóstico</span>';
-  if(s==='Reparo Aprovado')return '<span class="badge b-aprov">● Aprovado</span>';
-  return `<span class="badge b-diag">${s||'—'}</span>`;
+  if(s==='OS Completa')    return '<span class="badge bok">✓ Completa</span>';
+  if(s==='Só Diagnóstico') return '<span class="badge bdi">⚡ Diagnóstico</span>';
+  if(s==='Reparo Aprovado')return '<span class="badge bap">● Aprovado</span>';
+  return `<span class="badge bdi">${s||'—'}</span>`;
 }
 function renderTbl(){
   const start=pg*PPG, rows=FLT.slice(start,start+PPG);
   document.getElementById('tBody').innerHTML=rows.map(o=>`
     <tr>
-      <td class="t-num">${o.num}</td>
-      <td style="color:var(--muted);font-size:11px">${o.data}</td>
-      <td class="t-cli">${o.cliente}</td>
-      <td class="t-vei">${o.veiculo}</td>
+      <td class="tnu">${o.num}</td>
+      <td style="color:var(--mut);font-size:11px">${o.data}</td>
+      <td class="tcl">${o.cliente}</td>
+      <td class="tve">${o.veiculo}</td>
       <td>${o.sistema}</td>
       <td>${badge(o.status)}</td>
-      <td class="v-mo">R$ ${o.mo.toLocaleString('pt-BR')}</td>
-      <td class="v-pec">R$ ${o.pecas.toLocaleString('pt-BR')}</td>
-      <td class="v-tot">R$ ${o.total.toLocaleString('pt-BR')}</td>
+      <td class="vmo">R$&nbsp;${o.mo.toLocaleString('pt-BR')}</td>
+      <td class="vpc">R$&nbsp;${o.pecas.toLocaleString('pt-BR')}</td>
+      <td class="vto">R$&nbsp;${o.total.toLocaleString('pt-BR')}</td>
     </tr>
   `).join('');
-  const tot=FLT.length, pgs=Math.ceil(tot/PPG)||1;
+  const tot=FLT.length, pgs=Math.max(1,Math.ceil(tot/PPG));
   document.getElementById('pagInfo').textContent=`${start+1}–${Math.min(start+PPG,tot)} de ${tot} OS`;
   document.getElementById('bPrev').disabled=pg===0;
   document.getElementById('bNext').disabled=pg>=pgs-1;
 }
-function filter(){
+function applyFilter(){
   const q=document.getElementById('fQ').value.toLowerCase();
   const st=document.getElementById('fSt').value;
   FLT=ALL.filter(o=>{
-    const mQ=!q||[o.cliente,o.num,o.veiculo,o.sistema].some(v=>v.toLowerCase().includes(q));
-    return mQ && (!st||o.status===st);
+    const mQ=!q||[o.cliente,o.num,o.veiculo,o.sistema].some(v=>(v||'').toLowerCase().includes(q));
+    return mQ&&(!st||o.status===st);
   });
   pg=0; renderTbl();
 }
-function goPage(d){ pg=Math.max(0,Math.min(pg+d,Math.ceil(FLT.length/PPG)-1)); renderTbl(); }
+function goPage(d){
+  pg=Math.max(0,Math.min(pg+d,Math.ceil(FLT.length/PPG)-1));
+  renderTbl();
+}
 
-// ─── LOAD ──────────────────────────────────────────────────
+// ── LOAD ────────────────────────────────────────────────────
 async function loadData(){
-  document.getElementById('loading').classList.remove('fade');
+  document.getElementById('ld').classList.remove('gone');
   document.getElementById('app').style.display='none';
   document.getElementById('ftr').style.display='none';
   document.getElementById('ld-err').style.display='none';
 
-  // Injeta logo SVG do Denis
-  const hdrLeft = document.querySelector('.hdr-left');
-  let logoEl = document.getElementById('logoSVG');
-  if(!logoEl){
-    logoEl = document.createElement('div');
-    logoEl.id='logoSVG';
-    logoEl.style.cssText='width:44px;height:44px;border-radius:8px;overflow:hidden;flex-shrink:0';
-    logoEl.innerHTML=LOGO_SVG;
-    hdrLeft.insertBefore(logoEl, hdrLeft.firstChild);
-  }
-
   try {
-    const res = await fetch(CSV_URL+'&nocache='+Date.now());
+    const res = await fetch(CSV_URL + '&nocache=' + Date.now());
     if(!res.ok) throw new Error('HTTP '+res.status);
     const text = await res.text();
-    const rows = parseCSV(text);
-    if(!rows.length) throw new Error('Nenhuma OS encontrada. Verifique se a planilha tem dados na Página1.');
 
-    ALL = normalize(rows);
-    FLT = [...ALL];
-    pg  = 0;
+    console.log('CSV bruto (primeiros 500 chars):', text.slice(0,500));
 
+    const { headers, rows } = parseCSV(text);
+    if(!rows.length) throw new Error('Planilha sem dados. Verifique se há OS cadastradas na Página1.');
+
+    ALL = normalizeOS(headers, rows);
+    if(!ALL.length) throw new Error('Nenhuma OS encontrada (linhas sem Nº iniciando com #).');
+
+    console.log('OS parseadas:', ALL.length);
+    console.log('Exemplo OS[0]:', ALL[0]);
+
+    FLT = [...ALL]; pg = 0;
     buildKPIs(ALL);
     buildCharts(ALL);
     buildInsights(ALL);
     renderTbl();
 
-    const now = new Date();
-    document.getElementById('updTime').textContent =
+    const now=new Date();
+    document.getElementById('updTime').textContent=
       'Atualizado às '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
 
-    document.getElementById('loading').classList.add('fade');
+    document.getElementById('ld').classList.add('gone');
     document.getElementById('app').style.display='block';
     document.getElementById('ftr').style.display='block';
 
   } catch(e) {
+    console.error('Erro ao carregar:', e);
     const el=document.getElementById('ld-err');
     el.style.display='block';
-    el.textContent='Erro: '+e.message;
+    el.innerHTML='Erro ao carregar dados: <b>'+e.message+'</b><br><small>Abra o Console do navegador (F12) para mais detalhes.</small>';
   }
 }
 
