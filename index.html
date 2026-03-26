@@ -11,12 +11,11 @@
 :root{
   --gold:#E8A020;--gold-l:#f0b84a;--gold-dim:rgba(232,160,32,.10);--gold-b:rgba(232,160,32,.22);
   --d1:#141414;--d2:#1c1c1c;--d3:#242424;
-  --txt:#e8e2d8;--mut:#6e6a64;--dim:#2e2e2e;
-  --grn:#4caf7d;--blu:#5a9fd4;--red:#e05c4b;
+  --txt:#e8e2d8;--mut:#6e6a64;--dim:#2a2a2a;
+  --grn:#4caf7d;--blu:#5a9fd4;
 }
 html,body{min-height:100%;background:var(--d1);color:var(--txt);font-family:'DM Sans',sans-serif;font-size:14px}
 
-/* LOADING */
 #ld{position:fixed;inset:0;background:var(--d1);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:999;transition:opacity .5s}
 #ld.gone{opacity:0;pointer-events:none}
 .ld-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:8px;color:var(--gold)}
@@ -24,12 +23,11 @@ html,body{min-height:100%;background:var(--d1);color:var(--txt);font-family:'DM 
 .ld-bar{width:140px;height:2px;background:var(--dim);border-radius:2px;overflow:hidden}
 .ld-fill{height:100%;background:var(--gold);animation:bar 1.4s ease-in-out infinite}
 @keyframes bar{0%{width:0;margin-left:0}50%{width:100%;margin-left:0}100%{width:0;margin-left:100%}}
-#ld-err{display:none;font-size:11px;color:var(--red);background:rgba(224,92,75,.1);border:1px solid rgba(224,92,75,.25);border-radius:6px;padding:10px 18px;max-width:360px;text-align:center;line-height:1.6}
+#ld-err{display:none;font-size:11px;color:#e05c4b;background:rgba(224,92,75,.1);border:1px solid rgba(224,92,75,.25);border-radius:6px;padding:12px 18px;max-width:380px;text-align:center;line-height:1.6}
 
-/* HEADER */
 .hdr{background:var(--d2);border-bottom:1px solid var(--gold-b);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;z-index:50}
 .hdr-l{display:flex;align-items:center;gap:14px}
-.logo-wrap{width:46px;height:46px;border-radius:9px;overflow:hidden;flex-shrink:0;background:var(--d3);display:flex;align-items:center;justify-content:center}
+.logo-wrap{width:46px;height:46px;border-radius:9px;overflow:hidden;flex-shrink:0}
 .brand{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:4px;color:var(--gold);line-height:1}
 .brand-sub{font-size:10px;color:var(--mut);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
 .hdr-r{display:flex;align-items:center;gap:14px}
@@ -38,23 +36,20 @@ html,body{min-height:100%;background:var(--d1);color:var(--txt);font-family:'DM 
 .btn-upd{background:none;border:1px solid var(--gold-b);color:var(--mut);font-size:11px;font-family:'DM Sans',sans-serif;padding:5px 14px;border-radius:6px;cursor:pointer;transition:all .15s}
 .btn-upd:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
 
-/* LAYOUT */
 .wrap{max-width:1200px;margin:0 auto;padding:28px 28px 60px}
 .sec{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:10px;margin-bottom:14px;margin-top:28px}
 .sec:first-child{margin-top:0}
 .sec::after{content:'';flex:1;height:1px;background:var(--gold-b);opacity:.4}
 
-/* KPI */
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .kpi{background:var(--d2);border:1px solid var(--gold-b);border-radius:10px;padding:20px 18px 16px;position:relative;overflow:hidden}
 .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent 70%)}
 .k-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
-.k-val{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);line-height:1;letter-spacing:1px}
+.k-val{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--gold);line-height:1;letter-spacing:1px}
 .k-sub{font-size:11px;color:var(--mut);margin-top:6px}
 .k-tag{font-size:11px;font-weight:500;margin-top:4px;color:var(--gold-l)}
 .k-tag.up{color:var(--grn)}
 
-/* CARDS/CHARTS */
 .g21{display:grid;grid-template-columns:2fr 1fr;gap:12px}
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .card{background:var(--d2);border:1px solid var(--gold-b);border-radius:10px;padding:20px}
@@ -65,7 +60,6 @@ html,body{min-height:100%;background:var(--d1);color:var(--txt);font-family:'DM 
 .li{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--mut)}
 .ld2{width:9px;height:9px;border-radius:2px;flex-shrink:0}
 
-/* INSIGHTS */
 .ig{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .ins{background:var(--d2);border:1px solid var(--gold-b);border-radius:10px;padding:16px 18px;display:flex;gap:12px}
 .ii{font-size:20px;flex-shrink:0}
@@ -73,7 +67,6 @@ html,body{min-height:100%;background:var(--d1);color:var(--txt);font-family:'DM 
 .ib{font-size:11px;color:var(--mut);line-height:1.55}
 .ib b{color:var(--txt)}
 
-/* TABLE */
 .tc{background:var(--d2);border:1px solid var(--gold-b);border-radius:10px;padding:22px}
 .tt{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
 .tf{display:flex;gap:8px;flex-wrap:wrap}
@@ -105,6 +98,9 @@ tbody td{padding:9px 10px;font-size:12px;vertical-align:middle;white-space:nowra
 .pb:hover:not(:disabled){background:var(--gold-dim);border-color:var(--gold);color:var(--gold)}
 .pb:disabled{opacity:.3;cursor:not-allowed}
 
+/* DEBUG TABLE */
+#dbgBox{background:var(--d3);border:1px solid var(--gold-b);border-radius:8px;padding:16px;margin-top:12px;font-size:11px;color:var(--mut);font-family:monospace;white-space:pre-wrap;display:none}
+
 .ftr{text-align:center;font-size:10px;color:var(--dim);padding:20px 0 32px;letter-spacing:2px;text-transform:uppercase}
 
 @media(max-width:900px){.kpi-grid,.g21,.g3,.ig{grid-template-columns:1fr}.wrap{padding:14px 12px 40px}.hdr{padding:0 14px}}
@@ -122,22 +118,17 @@ tbody td{padding:9px 10px;font-size:12px;vertical-align:middle;white-space:nowra
 
 <header class="hdr">
   <div class="hdr-l">
-    <!-- Logo fiel ao Denis: fundo escuro, raio dourado, carro, borda dourada -->
     <div class="logo-wrap">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="46" height="46">
         <rect width="100" height="100" rx="12" fill="#1a1a1a"/>
         <rect x="5" y="5" width="90" height="90" rx="9" fill="none" stroke="#E8A020" stroke-width="2.5"/>
-        <!-- carro silhueta -->
         <path d="M14 68 L14 58 Q14 55 17 55 L22 55 L30 38 L70 38 L78 55 L83 55 Q86 55 86 58 L86 68 Z" fill="#2a2a2a" stroke="#3a3a3a" stroke-width="1"/>
         <path d="M32 38 L38 24 L62 24 L68 38Z" fill="#222" stroke="#333" stroke-width="1"/>
-        <!-- rodas -->
         <circle cx="30" cy="69" r="9" fill="#111" stroke="#E8A020" stroke-width="2"/>
         <circle cx="70" cy="69" r="9" fill="#111" stroke="#E8A020" stroke-width="2"/>
         <circle cx="30" cy="69" r="3" fill="#E8A020"/>
         <circle cx="70" cy="69" r="3" fill="#E8A020"/>
-        <!-- raio elétrico central -->
         <path d="M55 14 L45 38 L52 38 L40 62 L62 34 L54 34 Z" fill="#E8A020"/>
-        <!-- faróis -->
         <rect x="14" y="56" width="8" height="4" rx="2" fill="#E8A020" opacity=".7"/>
         <rect x="78" y="56" width="8" height="4" rx="2" fill="#E8A020" opacity=".7"/>
       </svg>
@@ -173,13 +164,13 @@ tbody td{padding:9px 10px;font-size:12px;vertical-align:middle;white-space:nowra
     <div class="kpi">
       <div class="k-lbl">Receita Mão de Obra</div>
       <div class="k-val" id="kMo">—</div>
-      <div class="k-sub">diagnóstico + execução</div>
+      <div class="k-sub">só o serviço do Denis</div>
       <div class="k-tag" id="kMoPct">—</div>
     </div>
     <div class="kpi">
       <div class="k-lbl">Receita em Peças</div>
       <div class="k-val" id="kPec">—</div>
-      <div class="k-sub">revendidas ao cliente</div>
+      <div class="k-sub">materiais revendidos</div>
       <div class="k-tag" id="kPecPct">—</div>
     </div>
   </div>
@@ -211,7 +202,7 @@ tbody td{padding:9px 10px;font-size:12px;vertical-align:middle;white-space:nowra
       <div class="cbox" style="height:200px"><canvas id="cTk"></canvas></div>
     </div>
     <div class="card">
-      <div class="ct"><em></em>Distribuição semanal de OS</div>
+      <div class="ct"><em></em>OS por semana</div>
       <div class="cbox" style="height:200px"><canvas id="cSem"></canvas></div>
     </div>
   </div>
@@ -250,6 +241,11 @@ tbody td{padding:9px 10px;font-size:12px;vertical-align:middle;white-space:nowra
       </div>
     </div>
   </div>
+
+  <!-- DEBUG: mostra estrutura do CSV para diagnóstico -->
+  <div class="sec" id="dbgSec" style="display:none">Debug — estrutura do CSV</div>
+  <div id="dbgBox"></div>
+
 </div>
 
 <div class="ftr" id="ftr" style="display:none">
@@ -257,344 +253,229 @@ tbody td{padding:9px 10px;font-size:12px;vertical-align:middle;white-space:nowra
 </div>
 
 <script>
-// ── CONFIG ───────────────────────────────────────────────────
-const SHEET_ID = '12D7Mykcu18iD827n5ffSAiHuve9nj0v4jIZ8T2bY3VU';
-const CSV_URL  = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`;
+// ── URL publicada (sem CORS) ─────────────────────────────────
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQTLpPcG7Bq-LkZKra5bQicjy2_0sk9wzFalhikAwbVFSpdkXGrcKTm28j9EZlKylUtNuIqrxR8EIJt/pub?output=csv';
 
-// ── PARSE CSV robusto ────────────────────────────────────────
-// O Google Sheets exporta valores monetários como: "R$ 1.200,00"
-// com aspas quando contêm vírgula — o parser precisa respeitar isso
-function parseCSV(raw) {
-  const lines = raw.replace(/\r/g, '').trim().split('\n');
-  if (lines.length < 2) return { headers:[], rows:[] };
-
-  function splitRow(line) {
-    const cols = [];
-    let cur = '', inQ = false;
-    for (let i = 0; i < line.length; i++) {
-      const ch = line[i];
-      if (ch === '"') {
-        if (inQ && line[i+1] === '"') { cur += '"'; i++; } // aspas escapadas
-        else inQ = !inQ;
-      } else if (ch === ',' && !inQ) {
-        cols.push(cur); cur = '';
-      } else {
-        cur += ch;
-      }
-    }
-    cols.push(cur);
-    return cols.map(s => s.trim());
+// ── PARSE CSV ────────────────────────────────────────────────
+function splitRow(line) {
+  const cols = []; let cur = '', inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') { if (inQ && line[i+1]==='"'){cur+='"';i++;} else inQ=!inQ; }
+    else if (c === ',' && !inQ) { cols.push(cur); cur=''; }
+    else cur += c;
   }
+  cols.push(cur);
+  return cols.map(s => s.trim());
+}
 
+function parseCSV(raw) {
+  const lines = raw.replace(/\r/g,'').trim().split('\n');
   const headers = splitRow(lines[0]);
-  const rows = lines.slice(1).map(l => {
-    const cols = splitRow(l);
-    const obj = {};
-    headers.forEach((h, i) => { obj[h] = cols[i] || ''; });
-    return obj;
-  });
+  const rows = lines.slice(1).map(l => splitRow(l));
   return { headers, rows };
 }
 
-// ── PARSE VALOR BRL ──────────────────────────────────────────
-// Formatos possíveis: "R$ 120,00" / "R$120,00" / "120.00" / "—" / ""
+// ── PARSE BRL ────────────────────────────────────────────────
 function parseBRL(s) {
   if (!s) return 0;
-  s = s.toString().trim();
-  if (s === '—' || s === '-' || s === '') return 0;
-  // remove R$, espaços, pontos de milhar; troca vírgula decimal por ponto
-  s = s.replace(/R\$\s*/gi, '').replace(/\s/g, '');
-  // Se tem vírgula: formato BR (1.200,00)
-  if (s.includes(',')) {
-    s = s.replace(/\./g, '').replace(',', '.');
-  }
+  s = String(s).trim();
+  if (!s || s === '—' || s === '-') return 0;
+  s = s.replace(/R\$\s*/gi,'').replace(/\s/g,'');
+  // Formato BR: 1.200,00 → pontos são milhar, vírgula é decimal
+  if (s.includes(',')) s = s.replace(/\./g,'').replace(',','.');
   const v = parseFloat(s);
   return isNaN(v) ? 0 : v;
 }
 
-// ── NORMALIZA LINHAS ─────────────────────────────────────────
-// Detecta as colunas de valor pelo nome do header
+// ── NORMALIZA ────────────────────────────────────────────────
+// Estrutura da planilha do Denis (27 colunas):
+// 0=Num, 1=Data, 2=Status, 3=Criador, 4=Nome, 5=WhatsApp,
+// 6=Veículo, 7=Placa, 8=KM, 9=Queixa, 10=Sistemas, 11=Códigos,
+// 12=Diagnóstico, 13=Resultado, 14=Solução, 15=Peças(texto),
+// 16=Diag R$(MO), 17=col sem nome(PecasR$), 18=col sem nome(Total), 19=obs
+// PORÉM o Google Sheets exporta colunas sem header como strings vazias
+// Logo: headers[16]="Diag R$", headers[17]="", headers[18]="", headers[19]=""
 function normalizeOS(headers, rows) {
-  // Mapeia índices pelos headers
-  const hi = {};
-  headers.forEach((h, i) => { hi[h.toLowerCase().trim()] = i; });
+  // Encontra índice das colunas de valor pelo nome do header
+  // "Diag R$" = mão de obra; as 2 colunas seguintes sem nome = peças e total
+  let iMO = -1, iPec = -1, iTotal = -1;
 
-  // Debug: mostra headers no console
-  console.log('Headers encontrados:', headers);
+  for (let i = 0; i < headers.length; i++) {
+    const h = headers[i].toLowerCase().replace(/\s/g,'');
+    if ((h.includes('diag') && h.includes('r$')) || h === 'diagr$') {
+      iMO    = i;
+      iPec   = i + 1;
+      iTotal = i + 2;
+      break;
+    }
+  }
+
+  // Fallback: se não achou "Diag R$", usa índices fixos 16,17,18
+  if (iMO === -1) { iMO=16; iPec=17; iTotal=18; }
 
   return rows
-    .filter(r => (r['Num']||r[headers[0]]||'').startsWith('#'))
-    .map(r => {
-      const vals = Object.values(r);
+    .filter(cols => (cols[0]||'').startsWith('#'))
+    .map(cols => {
+      const mo    = parseBRL(cols[iMO]);
+      const pecas = parseBRL(cols[iPec]);
+      let   total = parseBRL(cols[iTotal]);
+      if (total === 0) total = mo + pecas;
 
-      // Tenta pelos nomes de coluna primeiro, fallback para índice
-      // A planilha do Denis: col Q=DiagR$(MO), col R=PecasR$, col S=Total, col T=obs
-      // Índices: 0=Num,1=Data,2=Status,3=Criador,4=Nome,5=Zap,6=Veiculo,7=Placa,
-      //          8=KM,9=Queixa,10=Sistemas,11=Codigos,12=Diag,13=Resultado,14=Solucao,
-      //          15=Pecas(texto),16=DiagR$,17=?,18=?,19=?
-      // Como os headers extras não têm nome, usamos índice 16,17,18
-      // MAS o Google Sheets pode exportar colunas sem header como ""
-      // Vamos pegar os 4 últimos valores numéricos de cada linha
+      const data  = cols[1] || '';
+      const parts = data.split('/');
+      const dd    = (parts[0]||'').padStart(2,'0');
+      const mm    = (parts[1]||'').padStart(2,'0');
+      const ano   = parts[2] || '';
+      const dia   = (dd && mm) ? `${dd}/${mm}` : data;
 
-      // Estratégia: pega todos os valores que parecem monetários (contêm R$ ou são números)
-      // das últimas 6 colunas
-      const last6 = vals.slice(Math.max(0, vals.length - 6));
-      const monetarios = last6
-        .map(v => ({ raw: v, val: parseBRL(v) }))
-        .filter(x => x.val > 0 || (x.raw && x.raw.includes('R$')));
+      const d   = parseInt(parts[0]||'1');
+      const sem = d<=7?'1ª sem':d<=14?'2ª sem':d<=21?'3ª sem':'4ª sem';
 
-      // Espera-se: [DiagR$(MO), PecasR$, Total]
-      // Se tiver 3+ monetários, pega os últimos 3
-      let mo = 0, pecas = 0, total = 0;
-      if (monetarios.length >= 3) {
-        mo    = monetarios[monetarios.length - 3].val;
-        pecas = monetarios[monetarios.length - 2].val;
-        total = monetarios[monetarios.length - 1].val;
-      } else if (monetarios.length === 2) {
-        mo    = monetarios[0].val;
-        total = monetarios[1].val;
-      } else if (monetarios.length === 1) {
-        total = monetarios[0].val;
-      }
-
-      // Fallback: se total=0 mas tem mo ou pecas
-      if (total === 0 && (mo > 0 || pecas > 0)) total = mo + pecas;
-
-      const data   = r['Data'] || vals[1] || '';
-      const parts  = data.split('/');
-      const dd = (parts[0]||'').padStart(2,'0');
-      const mm = (parts[1]||'').padStart(2,'0');
-      const dia = dd && mm ? `${dd}/${mm}` : data;
-
-      const d = parseInt(parts[0]||'1');
-      const semana = d <= 7 ? 'Sem 1' : d <= 14 ? 'Sem 2' : d <= 21 ? 'Sem 3' : 'Sem 4';
-
-      const sistemaRaw = r['Sistemas'] || vals[10] || '—';
-      const sistema    = sistemaRaw.split(',')[0].trim() || '—';
+      const sisRaw = cols[10] || '—';
+      const sis    = sisRaw.split(',')[0].trim() || '—';
 
       return {
-        num:     r['Num']     || vals[0] || '—',
-        data,
-        dia,
-        semana,
-        status:  r['Status']  || vals[2] || '—',
-        cliente: r['Nome']    || r['Criador'] || vals[4] || vals[3] || '—',
-        veiculo: r['Veículo'] || vals[6] || '—',
-        sistema,
+        num:     cols[0]  || '—',
+        data:    data,
+        dataFull: ano ? `${dd}/${mm}/${ano}` : dia,
+        dia, sem,
+        status:  cols[2]  || '—',
+        cliente: cols[4]  || cols[3] || '—',
+        veiculo: cols[6]  || '—',
+        sistema: sis,
         mo, pecas, total,
-        _dbg: { last6, monetarios } // para debug
+        _raw: { iMO, iPec, iTotal, vMO: cols[iMO], vPec: cols[iPec], vTot: cols[iTotal] }
       };
     });
 }
 
 // ── CHARTS ──────────────────────────────────────────────────
-const CH = {};
-function mkChart(id, cfg) {
-  if (CH[id]) { CH[id].destroy(); delete CH[id]; }
-  const el = document.getElementById(id);
-  if (!el) return;
-  CH[id] = new Chart(el, cfg);
+const CH={};
+function mkChart(id,cfg){
+  if(CH[id]){CH[id].destroy();delete CH[id];}
+  const el=document.getElementById(id);
+  if(el) CH[id]=new Chart(el,cfg);
 }
-
-const TICK_OPTS = (axis, prefix='') => ({
-  color: '#6e6a64', font: { size: 10 },
-  callback: v => prefix + v.toLocaleString('pt-BR')
-});
 
 function buildCharts(OS) {
   // Faturamento por dia
-  const byDay = {};
-  OS.forEach(o => {
-    if (!byDay[o.dia]) byDay[o.dia] = { mo: 0, pec: 0 };
-    byDay[o.dia].mo  += o.mo;
-    byDay[o.dia].pec += o.pecas;
+  const byDay={};
+  OS.forEach(o=>{
+    if(!byDay[o.dia]) byDay[o.dia]={mo:0,pec:0};
+    byDay[o.dia].mo+=o.mo; byDay[o.dia].pec+=o.pecas;
   });
-  const dias = Object.keys(byDay).sort((a,b)=> {
-    const [da,ma]=a.split('/').map(Number), [db,mb]=b.split('/').map(Number);
-    return ma!==mb ? ma-mb : da-db;
+  const dias=Object.keys(byDay).sort((a,b)=>{
+    const [da,ma]=a.split('/').map(Number),[db,mb]=b.split('/').map(Number);
+    return ma!==mb?ma-mb:da-db;
   });
 
-  mkChart('cDia', {
-    type: 'bar',
-    data: {
-      labels: dias,
-      datasets: [
-        { label:'MO',    data: dias.map(d=>byDay[d].mo),  backgroundColor:'#E8A020', borderRadius:3, borderSkipped:false },
-        { label:'Peças', data: dias.map(d=>byDay[d].pec), backgroundColor:'rgba(232,160,32,.25)', borderRadius:3, borderSkipped:false }
-      ]
-    },
-    options: {
-      responsive:true, maintainAspectRatio:false,
-      plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:c=>' R$ '+c.parsed.y.toLocaleString('pt-BR') } } },
-      scales:{
-        x:{ stacked:true, ticks:{color:'#6e6a64',font:{size:10},autoSkip:false,maxRotation:45}, grid:{color:'rgba(232,160,32,.07)'} },
-        y:{ stacked:true, ticks:{color:'#6e6a64',font:{size:10},callback:v=>'R$'+v.toLocaleString('pt-BR')}, grid:{color:'rgba(232,160,32,.07)'} }
-      }
-    }
-  });
+  mkChart('cDia',{type:'bar',data:{labels:dias,datasets:[
+    {label:'MO',   data:dias.map(d=>byDay[d].mo),  backgroundColor:'#E8A020',borderRadius:3,borderSkipped:false},
+    {label:'Peças',data:dias.map(d=>byDay[d].pec),backgroundColor:'rgba(232,160,32,.25)',borderRadius:3,borderSkipped:false}
+  ]},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' R$ '+c.parsed.y.toLocaleString('pt-BR')}}},
+    scales:{
+      x:{stacked:true,ticks:{color:'#6e6a64',font:{size:10},autoSkip:false,maxRotation:45},grid:{color:'rgba(232,160,32,.07)'}},
+      y:{stacked:true,ticks:{color:'#6e6a64',font:{size:10},callback:v=>'R$'+v.toLocaleString('pt-BR')},grid:{color:'rgba(232,160,32,.07)'}}
+    }}});
 
   // Status
-  const stC = {};
-  OS.forEach(o => { const s=o.status||'Sem status'; stC[s]=(stC[s]||0)+1; });
-  const ST_COLORS = {'OS Completa':'#4caf7d','Só Diagnóstico':'#E8A020','Reparo Aprovado':'#5a9fd4'};
-  const stL = Object.keys(stC), stB = stL.map(l=>ST_COLORS[l]||'#888');
-  mkChart('cStatus', {
-    type:'doughnut',
-    data:{ labels:stL, datasets:[{ data:Object.values(stC), backgroundColor:stB, borderColor:'#1c1c1c', borderWidth:3, hoverOffset:5 }] },
-    options:{ responsive:true, maintainAspectRatio:false, cutout:'65%', plugins:{legend:{display:false}} }
-  });
-  document.getElementById('legSt').innerHTML = stL.map((l,i)=>
-    `<div class="li"><div class="ld2" style="background:${stB[i]}"></div>${l} (${stC[l]})</div>`
-  ).join('');
+  const stC={};
+  OS.forEach(o=>{const s=o.status||'Sem status';stC[s]=(stC[s]||0)+1;});
+  const STC={'OS Completa':'#4caf7d','Só Diagnóstico':'#E8A020','Reparo Aprovado':'#5a9fd4'};
+  const stL=Object.keys(stC),stB=stL.map(l=>STC[l]||'#888');
+  mkChart('cStatus',{type:'doughnut',data:{labels:stL,datasets:[{data:Object.values(stC),backgroundColor:stB,borderColor:'#1c1c1c',borderWidth:3,hoverOffset:5}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{display:false}}}});
+  document.getElementById('legSt').innerHTML=stL.map((l,i)=>
+    `<div class="li"><div class="ld2" style="background:${stB[i]}"></div>${l} (${stC[l]})</div>`).join('');
 
   // Sistemas
-  const sisC = {};
-  OS.forEach(o => { const s=o.sistema||'—'; sisC[s]=(sisC[s]||0)+1; });
-  const sisSorted = Object.entries(sisC).sort((a,b)=>b[1]-a[1]).slice(0,7);
-  mkChart('cSis', {
-    type:'bar',
-    data:{ labels:sisSorted.map(s=>s[0]), datasets:[{
-      data:sisSorted.map(s=>s[1]),
-      backgroundColor:sisSorted.map((_,i)=>`rgba(232,160,32,${Math.max(.9-i*.11,.18)})`),
-      borderRadius:3, borderSkipped:false
-    }]},
-    options:{
-      indexAxis:'y', responsive:true, maintainAspectRatio:false,
-      plugins:{legend:{display:false}},
-      scales:{
-        x:{ ticks:{color:'#6e6a64',font:{size:10},stepSize:1}, grid:{color:'rgba(232,160,32,.07)'} },
-        y:{ ticks:{color:'#e8e2d8',font:{size:10}}, grid:{display:false} }
-      }
-    }
-  });
+  const sisC={};
+  OS.forEach(o=>{const s=o.sistema||'—';sisC[s]=(sisC[s]||0)+1;});
+  const sisSorted=Object.entries(sisC).sort((a,b)=>b[1]-a[1]).slice(0,7);
+  mkChart('cSis',{type:'bar',data:{labels:sisSorted.map(s=>s[0]),datasets:[{
+    data:sisSorted.map(s=>s[1]),
+    backgroundColor:sisSorted.map((_,i)=>`rgba(232,160,32,${Math.max(.9-i*.11,.18)})`),
+    borderRadius:3,borderSkipped:false}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{ticks:{color:'#6e6a64',font:{size:10},stepSize:1},grid:{color:'rgba(232,160,32,.07)'}},
+        y:{ticks:{color:'#e8e2d8',font:{size:10}},grid:{display:false}}}}});
 
   // Ticket médio
-  const sisTot = {};
-  OS.forEach(o => {
-    const s=o.sistema||'—';
-    if(!sisTot[s]) sisTot[s]={sum:0,n:0};
-    sisTot[s].sum+=o.total; sisTot[s].n++;
-  });
-  const tkData = Object.entries(sisTot)
-    .map(([k,v])=>({s:k,avg:Math.round(v.sum/v.n)}))
-    .sort((a,b)=>b.avg-a.avg).slice(0,6);
-  mkChart('cTk', {
-    type:'bar',
-    data:{ labels:tkData.map(d=>d.s), datasets:[{
-      data:tkData.map(d=>d.avg), backgroundColor:'rgba(90,159,212,.65)', borderRadius:3, borderSkipped:false
-    }]},
-    options:{
-      indexAxis:'y', responsive:true, maintainAspectRatio:false,
-      plugins:{ legend:{display:false}, tooltip:{callbacks:{label:c=>' R$ '+c.parsed.x.toLocaleString('pt-BR')}} },
-      scales:{
-        x:{ ticks:{color:'#6e6a64',font:{size:10},callback:v=>'R$'+v.toLocaleString('pt-BR')}, grid:{color:'rgba(232,160,32,.07)'} },
-        y:{ ticks:{color:'#e8e2d8',font:{size:10}}, grid:{display:false} }
-      }
-    }
-  });
+  const sisTot={};
+  OS.forEach(o=>{const s=o.sistema||'—';if(!sisTot[s])sisTot[s]={sum:0,n:0};sisTot[s].sum+=o.total;sisTot[s].n++;});
+  const tkData=Object.entries(sisTot).map(([k,v])=>({s:k,avg:Math.round(v.sum/v.n)})).sort((a,b)=>b.avg-a.avg).slice(0,6);
+  mkChart('cTk',{type:'bar',data:{labels:tkData.map(d=>d.s),datasets:[{
+    data:tkData.map(d=>d.avg),backgroundColor:'rgba(90,159,212,.65)',borderRadius:3,borderSkipped:false}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' R$ '+c.parsed.x.toLocaleString('pt-BR')}}},
+      scales:{x:{ticks:{color:'#6e6a64',font:{size:10},callback:v=>'R$'+v.toLocaleString('pt-BR')},grid:{color:'rgba(232,160,32,.07)'}},
+        y:{ticks:{color:'#e8e2d8',font:{size:10}},grid:{display:false}}}}});
 
   // Semanal
-  const semC = {};
-  OS.forEach(o => { semC[o.semana]=(semC[o.semana]||0)+1; });
-  const SEMS = ['Sem 1','Sem 2','Sem 3','Sem 4'];
-  const semsPresentes = SEMS.filter(s=>semC[s]>0);
-  mkChart('cSem', {
-    type:'bar',
-    data:{
-      labels: semsPresentes.map(s=>{
-        const map={'Sem 1':'1ª sem','Sem 2':'2ª sem','Sem 3':'3ª sem','Sem 4':'4ª sem'};
-        return map[s]||s;
-      }),
-      datasets:[{
-        data:semsPresentes.map(s=>semC[s]),
-        backgroundColor:semsPresentes.map((_,i)=>`rgba(232,160,32,${.85-i*.15})`),
-        borderRadius:4, borderSkipped:false
-      }]
-    },
-    options:{
-      responsive:true, maintainAspectRatio:false,
-      plugins:{ legend:{display:false}, tooltip:{callbacks:{label:c=>c.parsed.y+' OS'}} },
-      scales:{
-        x:{ ticks:{color:'#6e6a64',font:{size:10}}, grid:{display:false} },
-        y:{ ticks:{color:'#6e6a64',font:{size:10},stepSize:1}, grid:{color:'rgba(232,160,32,.07)'} }
-      }
-    }
-  });
+  const semC={};
+  OS.forEach(o=>{semC[o.sem]=(semC[o.sem]||0)+1;});
+  const SEMS=['1ª sem','2ª sem','3ª sem','4ª sem'].filter(s=>semC[s]);
+  mkChart('cSem',{type:'bar',data:{labels:SEMS,datasets:[{
+    data:SEMS.map(s=>semC[s]),
+    backgroundColor:SEMS.map((_,i)=>`rgba(232,160,32,${.85-i*.15})`),
+    borderRadius:4,borderSkipped:false}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+' OS'}}},
+      scales:{x:{ticks:{color:'#6e6a64',font:{size:10}},grid:{display:false}},
+        y:{ticks:{color:'#6e6a64',font:{size:10},stepSize:1},grid:{color:'rgba(232,160,32,.07)'}}}}});
 }
 
 // ── KPIs ────────────────────────────────────────────────────
 function buildKPIs(OS) {
-  const n   = OS.length;
-  const fat = OS.reduce((s,o)=>s+o.total,0);
-  const mo  = OS.reduce((s,o)=>s+o.mo,0);
-  const pec = OS.reduce((s,o)=>s+o.pecas,0);
-  const tk  = n ? Math.round(fat/n) : 0;
-  const fmt = v => 'R$\u00a0' + v.toLocaleString('pt-BR');
+  const n=OS.length;
+  const fat=OS.reduce((s,o)=>s+o.total,0);
+  const mo =OS.reduce((s,o)=>s+o.mo,0);
+  const pec=OS.reduce((s,o)=>s+o.pecas,0);
+  const tk =n?Math.round(fat/n):0;
+  const fmt=v=>'R$\u00a0'+v.toLocaleString('pt-BR');
 
-  const datas = OS.map(o=>o.data).filter(Boolean).sort((a,b)=>{
-    const pa=a.split('/'), pb=b.split('/');
-    const ya=pa[2]||0, yb=pb[2]||0;
-    const ma=pa[1]||0, mb=pb[1]||0;
-    const da=pa[0]||0, db=pb[0]||0;
-    return ya!==yb?ya-yb:ma!==mb?ma-mb:da-db;
-  });
-  const per = datas.length >= 2
-    ? `${datas[0]} a ${datas[datas.length-1]}`
-    : datas[0] || '—';
+  const datas=OS.map(o=>o.dataFull).filter(Boolean);
+  const per=datas.length>=2?`${datas[0]} a ${datas[datas.length-1]}`:datas[0]||'—';
 
-  document.getElementById('kOs').textContent    = n;
-  document.getElementById('kPer').textContent   = per;
-  document.getElementById('kFat').textContent   = fmt(fat);
-  document.getElementById('kTick').textContent  = `↑ Ticket médio: ${fmt(tk)}`;
-  document.getElementById('kMo').textContent    = fmt(mo);
-  document.getElementById('kMoPct').textContent = fat ? `${Math.round(mo/fat*100)}% do faturamento` : '—';
-  document.getElementById('kPec').textContent   = fmt(pec);
-  document.getElementById('kPecPct').textContent= fat ? `${Math.round(pec/fat*100)}% do faturamento` : '—';
+  document.getElementById('kOs').textContent   =n;
+  document.getElementById('kPer').textContent  =per;
+  document.getElementById('kFat').textContent  =fmt(fat);
+  document.getElementById('kTick').textContent =`↑ Ticket médio: ${fmt(tk)}`;
+  document.getElementById('kMo').textContent   =fmt(mo);
+  document.getElementById('kMoPct').textContent=fat?`${Math.round(mo/fat*100)}% do faturamento`:'—';
+  document.getElementById('kPec').textContent  =fmt(pec);
+  document.getElementById('kPecPct').textContent=fat?`${Math.round(pec/fat*100)}% do faturamento`:'—';
 
-  // Pill do período
-  const MESES = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-  if (datas[0]) {
-    const p = datas[0].split('/');
-    const m = parseInt(p[1])-1, y = p[2] || new Date().getFullYear();
-    document.getElementById('periodPill').textContent = `${MESES[m]||''} ${y}`;
-  }
+  const MESES=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  if(datas[0]){const p=datas[0].split('/');const m=parseInt(p[1])-1,y=p[2]||new Date().getFullYear();
+    document.getElementById('periodPill').textContent=`${MESES[m]||''} ${y}`;}
 }
 
 // ── INSIGHTS ────────────────────────────────────────────────
 function buildInsights(OS) {
-  const sisC={}, sisTot={};
-  OS.forEach(o=>{
-    const s=o.sistema||'—';
-    sisC[s]=(sisC[s]||0)+1;
-    if(!sisTot[s]) sisTot[s]={sum:0,n:0};
-    sisTot[s].sum+=o.total; sisTot[s].n++;
-  });
-  const topSis   = Object.entries(sisC).sort((a,b)=>b[1]-a[1])[0]||['—',0];
-  const topTk    = Object.entries(sisTot).map(([k,v])=>({s:k,avg:Math.round(v.sum/v.n)})).sort((a,b)=>b.avg-a.avg)[0]||{s:'—',avg:0};
-  const fat      = OS.reduce((s,o)=>s+o.total,0);
-  const pec      = OS.reduce((s,o)=>s+o.pecas,0);
-  const pctPec   = fat ? Math.round(pec/fat*100) : 0;
-  const clientes = new Set(OS.map(o=>o.cliente.toLowerCase().trim())).size;
+  const sisC={},sisTot={};
+  OS.forEach(o=>{const s=o.sistema||'—';sisC[s]=(sisC[s]||0)+1;
+    if(!sisTot[s])sisTot[s]={sum:0,n:0};sisTot[s].sum+=o.total;sisTot[s].n++;});
+  const topSis=Object.entries(sisC).sort((a,b)=>b[1]-a[1])[0]||['—',0];
+  const topTk=Object.entries(sisTot).map(([k,v])=>({s:k,avg:Math.round(v.sum/v.n)})).sort((a,b)=>b.avg-a.avg)[0]||{s:'—',avg:0};
+  const fat=OS.reduce((s,o)=>s+o.total,0);
+  const clientes=new Set(OS.map(o=>o.cliente.toLowerCase().trim())).size;
 
-  document.getElementById('insights').innerHTML = [
-    { icon:'⚡', title:'Serviço mais recorrente',
-      body:`<b>${topSis[0]}</b> foi o sistema mais atendido com <b>${topSis[1]} OS</b>. Pode ser posicionado como especialidade na comunicação da Resolutiva.` },
-    { icon:'💰', title:'Maior ticket por serviço',
-      body:`<b>${topTk.s}</b> tem o melhor ticket médio: <b>R$&nbsp;${topTk.avg.toLocaleString('pt-BR')}</b> por OS. Prioridade no marketing.` },
-    { icon:'👥', title:'Clientes únicos atendidos',
-      body:`<b>${clientes} clientes diferentes</b> no período. Boa base para estratégia de reativação e fidelização.` }
-  ].map(x=>`
-    <div class="ins">
-      <div class="ii">${x.icon}</div>
-      <div><div class="it">${x.title}</div><div class="ib">${x.body}</div></div>
-    </div>
-  `).join('');
+  document.getElementById('insights').innerHTML=[
+    {icon:'⚡',title:'Serviço mais recorrente',
+     body:`<b>${topSis[0]}</b> foi o sistema mais atendido com <b>${topSis[1]} OS</b>. Pode ser posicionado como especialidade na comunicação.`},
+    {icon:'💰',title:'Maior ticket por serviço',
+     body:`<b>${topTk.s}</b> tem o melhor ticket médio: <b>R$&nbsp;${topTk.avg.toLocaleString('pt-BR')}</b> por OS. Prioridade no marketing.`},
+    {icon:'👥',title:'Clientes únicos no período',
+     body:`<b>${clientes} clientes diferentes</b> atendidos. Boa base para estratégia de reativação e fidelização.`}
+  ].map(x=>`<div class="ins"><div class="ii">${x.icon}</div><div><div class="it">${x.title}</div><div class="ib">${x.body}</div></div></div>`).join('');
 }
 
 // ── TABELA ──────────────────────────────────────────────────
-let ALL=[], FLT=[], pg=0;
+let ALL=[],FLT=[],pg=0;
 const PPG=10;
-
 function badge(s){
   if(s==='OS Completa')    return '<span class="badge bok">✓ Completa</span>';
   if(s==='Só Diagnóstico') return '<span class="badge bdi">⚡ Diagnóstico</span>';
@@ -602,11 +483,11 @@ function badge(s){
   return `<span class="badge bdi">${s||'—'}</span>`;
 }
 function renderTbl(){
-  const start=pg*PPG, rows=FLT.slice(start,start+PPG);
+  const start=pg*PPG,rows=FLT.slice(start,start+PPG);
   document.getElementById('tBody').innerHTML=rows.map(o=>`
     <tr>
       <td class="tnu">${o.num}</td>
-      <td style="color:var(--mut);font-size:11px">${o.data}</td>
+      <td style="color:var(--mut);font-size:11px">${o.dataFull}</td>
       <td class="tcl">${o.cliente}</td>
       <td class="tve">${o.veiculo}</td>
       <td>${o.sistema}</td>
@@ -614,9 +495,8 @@ function renderTbl(){
       <td class="vmo">R$&nbsp;${o.mo.toLocaleString('pt-BR')}</td>
       <td class="vpc">R$&nbsp;${o.pecas.toLocaleString('pt-BR')}</td>
       <td class="vto">R$&nbsp;${o.total.toLocaleString('pt-BR')}</td>
-    </tr>
-  `).join('');
-  const tot=FLT.length, pgs=Math.max(1,Math.ceil(tot/PPG));
+    </tr>`).join('');
+  const tot=FLT.length,pgs=Math.max(1,Math.ceil(tot/PPG));
   document.getElementById('pagInfo').textContent=`${start+1}–${Math.min(start+PPG,tot)} de ${tot} OS`;
   document.getElementById('bPrev').disabled=pg===0;
   document.getElementById('bNext').disabled=pg>=pgs-1;
@@ -628,12 +508,9 @@ function applyFilter(){
     const mQ=!q||[o.cliente,o.num,o.veiculo,o.sistema].some(v=>(v||'').toLowerCase().includes(q));
     return mQ&&(!st||o.status===st);
   });
-  pg=0; renderTbl();
+  pg=0;renderTbl();
 }
-function goPage(d){
-  pg=Math.max(0,Math.min(pg+d,Math.ceil(FLT.length/PPG)-1));
-  renderTbl();
-}
+function goPage(d){pg=Math.max(0,Math.min(pg+d,Math.ceil(FLT.length/PPG)-1));renderTbl();}
 
 // ── LOAD ────────────────────────────────────────────────────
 async function loadData(){
@@ -643,44 +520,44 @@ async function loadData(){
   document.getElementById('ld-err').style.display='none';
 
   try {
-    const res = await fetch(CSV_URL + '&nocache=' + Date.now());
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    const text = await res.text();
+    const res=await fetch(CSV_URL+'&t='+Date.now());
+    if(!res.ok) throw new Error('Erro HTTP '+res.status+'. Verifique se a planilha está publicada.');
+    const text=await res.text();
 
-    console.log('CSV bruto (primeiros 500 chars):', text.slice(0,500));
+    const {headers,rows}=parseCSV(text);
 
-    const { headers, rows } = parseCSV(text);
-    if(!rows.length) throw new Error('Planilha sem dados. Verifique se há OS cadastradas na Página1.');
+    // ── DEBUG: mostra headers e primeira linha de dados ──
+    const dbg=document.getElementById('dbgBox');
+    const dbgSec=document.getElementById('dbgSec');
+    dbg.textContent=
+      'Headers ('+headers.length+'):\n'+
+      headers.map((h,i)=>`  [${i}] "${h}"`).join('\n')+
+      '\n\nLinha 1 raw ('+rows[0]?.length+' colunas):\n'+
+      (rows[0]||[]).map((v,i)=>`  [${i}] "${v}"`).join('\n');
+    dbg.style.display='block';
+    dbgSec.style.display='flex';
+    // ────────────────────────────────────────────────────
 
-    ALL = normalizeOS(headers, rows);
-    if(!ALL.length) throw new Error('Nenhuma OS encontrada (linhas sem Nº iniciando com #).');
+    const OS=normalizeOS(headers,rows);
+    if(!OS.length) throw new Error('Nenhuma OS encontrada. As linhas devem ter Nº iniciando com #.');
 
-    console.log('OS parseadas:', ALL.length);
-    console.log('Exemplo OS[0]:', ALL[0]);
-
-    FLT = [...ALL]; pg = 0;
-    buildKPIs(ALL);
-    buildCharts(ALL);
-    buildInsights(ALL);
-    renderTbl();
+    ALL=[...OS];FLT=[...OS];pg=0;
+    buildKPIs(ALL);buildCharts(ALL);buildInsights(ALL);renderTbl();
 
     const now=new Date();
-    document.getElementById('updTime').textContent=
-      'Atualizado às '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-
+    document.getElementById('updTime').textContent='Atualizado às '+now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
     document.getElementById('ld').classList.add('gone');
     document.getElementById('app').style.display='block';
     document.getElementById('ftr').style.display='block';
 
-  } catch(e) {
-    console.error('Erro ao carregar:', e);
+  } catch(e){
     const el=document.getElementById('ld-err');
     el.style.display='block';
-    el.innerHTML='Erro ao carregar dados: <b>'+e.message+'</b><br><small>Abra o Console do navegador (F12) para mais detalhes.</small>';
+    el.innerHTML='<b>'+e.message+'</b>';
   }
 }
 
-window.addEventListener('DOMContentLoaded', loadData);
+window.addEventListener('DOMContentLoaded',loadData);
 </script>
 </body>
 </html>
